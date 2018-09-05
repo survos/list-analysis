@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Archive;
+use App\Services\MailArchiveService;
 use Doctrine\ORM\EntityManagerInterface;
 use Goutte\Client;
 use GuzzleHttp\Cookie\CookieJar;
@@ -86,26 +87,32 @@ class DownloadCommand extends ContainerAwareCommand
             $em->flush();
         }
 
-
-
+        /*
 
         $cookieJar = $client->getCookieJar();
         $guzzleClient = $client->getClient();
         $jar = CookieJar::fromArray($cookieJar->all(), 'list.rappnet.org');
         dump($jar, $cookieJar);
+        */
 
         foreach ($repo->findBy([], ['id' => 'DESC']) as $archive) {
             $url = $base . $archive->getFilename();
             $savedFile = "../data/" . $archive->getFilename();
 
-            $crawler = $client->request('GET', $url);
-            file_put_contents($savedFile, $client->getResponse()->getContent());
-            $io->writeln(sprintf("%s: %s bytes", $savedFile, filesize($savedFile)));
+            if (!file_exists($savedFile)) {
+                $crawler = $client->request('GET', $url);
+                file_put_contents($savedFile, $client->getResponse()->getContent());
+                $io->writeln(sprintf("%s: %s bytes", $savedFile, filesize($savedFile)));
+            }
+
+            $content = file_get_contents($savedFile);
+
+            $service = new MailArchiveService();
+            $service->init($content)
+                ->import();
 
 
-
-            die();
-
+            /*
 
             $response = $guzzleClient->get($url, ['sink' => $savedFile]);
             $io->writeln($savedFile . " downloaded: " . filesize($savedFile));
@@ -122,7 +129,10 @@ class DownloadCommand extends ContainerAwareCommand
 
             $io->writeln($savedFile . " downloaded: " . filesize($savedFile));
             die("Stopped");
+            */
         }
+
+
 
 
 
