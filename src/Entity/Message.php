@@ -17,6 +17,11 @@ class Message
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=64, unique=true)
+     */
+    private $messageId;
+
+    /**
      * @ORM\Column(type="string", length=48)
      */
     private $sender;
@@ -35,6 +40,18 @@ class Message
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Archive", inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $archive;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $status;
+
 
     public function getId(): ?int
     {
@@ -85,6 +102,42 @@ class Message
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getMessageId(): ?string
+    {
+        return $this->messageId;
+    }
+
+    public function setMessageId(string $messageId): self
+    {
+        $this->messageId = $messageId;
+
+        return $this;
+    }
+
+    public function getArchive(): ?Archive
+    {
+        return $this->archive;
+    }
+
+    public function setArchive(?Archive $archive): self
+    {
+        $this->archive = $archive;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

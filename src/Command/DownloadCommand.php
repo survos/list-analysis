@@ -20,20 +20,22 @@ class DownloadCommand extends ContainerAwareCommand
     protected static $defaultName = 'app:download';
 
     private $em;
+    private $archiveService;
 
     protected function configure()
     {
         $this
             ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
+            ->addArgument('filename', InputArgument::OPTIONAL, 'filename, e.g. 2007-January.txt.gz' )
             ->addOption('refresh', null, InputOption::VALUE_NONE, 'Refresh Monthly List')
         ;
     }
 
-    public function __construct($name = null, EntityManagerInterface $entityManager)
+    public function __construct($name = null, EntityManagerInterface $entityManager, MailArchiveService $mailArchiveService)
     {
         parent::__construct($name);
         $this->em = $entityManager;
+        $this->archiveService = $mailArchiveService;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -95,7 +97,16 @@ class DownloadCommand extends ContainerAwareCommand
         dump($jar, $cookieJar);
         */
 
-        foreach ($repo->findBy([], ['id' => 'DESC']) as $archive) {
+        if ($filename = $input->getArgument('filename')) {
+            $filter = ['filename' => $filename];
+        } else {
+            $filter = [
+                'marking' => Archive::PLACE_NEW
+            ];
+        }
+
+        // 'filename' => '2006-April.txt.gz'
+        foreach ($repo->findBy($filter, ['id' => 'DESC']) as $archive) {
             $url = $base . $archive->getFilename();
             $savedFile = "../data/" . $archive->getFilename();
 
@@ -107,8 +118,7 @@ class DownloadCommand extends ContainerAwareCommand
 
             $content = file_get_contents($savedFile);
 
-            $service = new MailArchiveService();
-            $service->init($content)
+            $this->archiveService->init($content, $archive)
                 ->import();
 
 

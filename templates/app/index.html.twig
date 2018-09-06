@@ -9,12 +9,15 @@
 </style>
 
 <div class="example-wrapper">
+
+
     <h1>Hello {{ controller_name }}! ✅</h1>
 
     This friendly message is coming from:
     <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/AppController.php'|file_link(0) }}">src/Controller/AppController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/app/index.html.twig'|file_link(0) }}">templates/app/index.html.twig</a></code></li>
-    </ul>
+        {% for class, definition in entities %}
+        <li>{{ dump(definition) }} </li>
+        {% endfor %}
+        </ul>
 </div>
 {% endblock %}
