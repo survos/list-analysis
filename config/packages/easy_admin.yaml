@@ -1,7 +1,36 @@
 easy_admin:
+    site_name: 'RappNet <i>Analysis</i>'
+    design:
+        form_theme:
+        - horizontal
+
+        assets:
+            css:
+            - 'build/css/app.css'
+            - '//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css'
+            js:
+            - 'https://unpkg.com/snarkdown@1.2.2/dist/snarkdown.umd.js'
+            - '//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'
+            - 'js/news.js'
+        #              - 'build/js/app.js'
+        menu:
+        - { label: 'Landing', route: 'landing', icon: home }
+        - entity: Message
+          icon: email
+        - entity: Account
+        - entity: Archive
+        - entity: TimePeriod
+    show:
+        max_results: 20
+    list:
+        actions: ['edit', 'search', 'show', '-delete']
     entities:
 #        # List the entity class name you want to manage
-        - App\Entity\Archive
-        - App\Entity\Message
-#        - App\Entity\Category
-#        - App\Entity\User
+        Message:
+            class: App\Entity\Message
+        Account:
+            class: App\Entity\Account
+        TimePeriod:
+            class: App\Entity\TimePeriod
+        Archive:
+            class: App\Entity\Archive
