@@ -10,135 +10,283 @@ use Doctrine\ORM\Mapping as ORM;
 class Message
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+    private $id;
+     */
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="messages")
+     */
+    private $account;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="inReplyTo")
+     */
+    private $replies;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TimePeriod", inversedBy="messages")
+     */
+    private $timePeriod;
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64, unique=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Message", inversedBy="replies")
      */
-    private $messageId;
+    private $inReplyTo;
 
     /**
-     * @ORM\Column(type="string", length=48)
+     * @ORM\Column(type="string", length=255, nullable=true)
+    private $inReplyToMessageId;
      */
-    private $sender;
 
     /**
-     * @ORM\Column(type="string", length=90, nullable=true)
+     * @ORM\Column(type="text", nullable=false)
      */
-    private $subject;
+    private $fromText; // original $header['From']
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    private $time;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
      */
     private $body;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=160, nullable=false)
      */
-    private $date;
+    private $subject;
+
+
+    public function __toString()
+    {
+        return substr($this->getSubject() . ": " . $this->getBody(), 0, 80);
+    }
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Archive", inversedBy="messages")
-     * @ORM\JoinColumn(nullable=false)
+     * @return mixed
      */
-    private $archive;
-
-    /**
-     * @ORM\Column(type="string", length=16, nullable=true)
-     */
-    private $status;
-
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getSender(): ?string
-    {
-        return $this->sender;
-    }
-
-    public function setSender(string $sender): self
-    {
-        $this->sender = $sender;
-
-        return $this;
-    }
-
-    public function getSubject(): ?string
+    public function getSubject()
     {
         return $this->subject;
     }
 
-    public function setSubject(?string $subject): self
+    /**
+     * @param mixed $subject
+     * @return Message
+     */
+    public function setSubject($subject)
     {
-        $this->subject = $subject;
-
+        $this->subject = substr(utf8_encode($subject), 0, 160);
         return $this;
     }
 
-    public function getBody(): ?string
+    /**
+     * @return mixed
+     */
+    public function getTime()
     {
-        return $this->body;
+        return $this->time;
     }
 
-    public function setBody(?string $body): self
+    /**
+     * @param mixed $time
+     * @return Message
+     */
+    public function setTime($time)
     {
-        $this->body = $body;
-
+        $this->time = $time;
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    /**
+     * @return mixed
+     */
+    public function getSenderName()
     {
-        return $this->date;
+        return $this->getAccount()->getSender();
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    /**
+     * @param mixed $senderName
+     * @return Message
+     */
+    public function setSenderName($senderName)
     {
-        $this->date = $date;
-
+        $this->senderName = $senderName;
         return $this;
     }
 
-    public function getMessageId(): ?string
+    /**
+     * @return mixed
+     */
+    public function getMessageId()
     {
         return $this->messageId;
     }
 
-    public function setMessageId(string $messageId): self
+    /**
+     * @param mixed $messageId
+     * @return Message
+     */
+    public function setMessageId($messageId)
     {
-        $this->messageId = $messageId;
-
+        $this->messageId = substr($messageId, 0, 255);
         return $this;
     }
 
-    public function getArchive(): ?Archive
+    /**
+     * @return mixed
+     */
+    public function getBody()
     {
-        return $this->archive;
+        return $this->body;
     }
 
-    public function setArchive(?Archive $archive): self
+    /**
+     * @param mixed $body
+     * @return Message
+     */
+    public function setBody($body)
     {
-        $this->archive = $archive;
-
+        $this->body = $body;
         return $this;
     }
 
-    public function getStatus(): ?string
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
-        return $this->status;
+        return $this->id;
     }
 
-    public function setStatus(?string $status): self
+    /**
+     * @param mixed $id
+     * @return Message
+     */
+    public function setId($id)
     {
-        $this->status = $status;
-
+        $this->id = $id;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAccount(): Account
+    {
+        return $this->account;
+    }
+
+    /**
+     * @param mixed $account
+     * @return Message
+     */
+    public function setAccount(Account $account)
+    {
+        $this->account = $account;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInReplyTo(): ?Message
+    {
+        return $this->inReplyTo;
+    }
+
+    /**
+     * @param mixed $inReplyTo
+     * @return Message
+     */
+    public function setInReplyTo(?Message $inReplyTo)
+    {
+        $this->inReplyTo = $inReplyTo;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInReplyToMessageId()
+    {
+        return $this->inReplyToMessageId;
+    }
+
+    /**
+     * @param mixed $inReplyToMessageId
+     * @return Message
+     */
+    public function setInReplyToMessageId($inReplyToMessageId)
+    {
+        $this->inReplyToMessageId = $inReplyToMessageId;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFromText()
+    {
+        return $this->fromText;
+    }
+
+    /**
+     * @param mixed $fromText
+     * @return Message
+     */
+    public function setFromText($fromText)
+    {
+        $this->fromText = $fromText;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTimePeriod()
+    {
+        return $this->timePeriod;
+    }
+
+    /**
+     * @param mixed $timePeriod
+     * @return Message
+     */
+    public function setTimePeriod(TimePeriod $timePeriod)
+    {
+        $this->timePeriod = $timePeriod;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReplies()
+    {
+        return $this->replies;
+    }
+
+    /**
+     * @param mixed $replies
+     * @return Message
+     */
+    public function setReplies($replies)
+    {
+        $this->replies = $replies;
+        return $this;
+    }
+
 }
