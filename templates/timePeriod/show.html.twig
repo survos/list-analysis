@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+        {% block javascripts %}
+            {{ parent() }}
+            <script>
+                console.log("In script");
+            </script>
+        {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-3">
+            <table class="table" id="subjects-table">
+                <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Count</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for s in subjects %}
+                    <tr>
+                        <td>{{ s.subject }}</td>
+                        <td>{{ s.cnt }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            Some good graphic here.
+        </div>
+
+    </div>
+
+    <table class="table">
+        <tbody>
+
+        {% for message in period.messages %}
+            <tr>
+                <td>{{ message.id }}</td>
+                <td>{{ message.senderName }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

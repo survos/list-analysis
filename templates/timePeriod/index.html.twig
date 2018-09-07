@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <table class="table">
+        <tbody>
+        {% for period in periods%}
+            <tr>
+                <td><a href="{{ path('app_message_period', period.routeParams) }}">{{ period.id }}</a></td>
+                <td>{{ period.monthNumber }}</td>
+                <td>{{ period.year}}</td>
+                <td>{{ period.importedMessageCount}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
