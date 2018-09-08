@@ -1,10 +1,10 @@
 server {
-  listen 80;
-  # Make this more specific because of conflict with other configs loaded:
-  listen 127.0.0.1:80;
-
     server_name rappnet;
-    root /var/www/list-analysis/public;
+    root /var/www/rappnet/public;
+
+    listen 80;
+    listen 127.0.0.1:80;
+
 
     location / {
         # try to serve file directly, fallback to index.php
@@ -42,6 +42,6 @@ server {
         return 404;
     }
 
-    error_log /var/log/nginx/rappnet_error.log;
-    access_log /var/log/nginx/rappnet_access.log;
+    error_log /var/log/nginx/rappnet-error.log;
+    access_log /var/log/nginx/rappnet-access.log;
 }
