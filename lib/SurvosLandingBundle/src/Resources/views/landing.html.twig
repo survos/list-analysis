@@ -1,0 +1,145 @@
+{% extends ["@SurvosLanding/public_base.html.twig", "@EasyAdmin/default/layout.html.twig"] %}
+
+{% block title "" %}
+
+{% block content %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">{{ app.request.baseUrl }}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Logout {{ app.user }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil">Edit</i> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_profile_show') }}">Profile</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_security_login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_registration_register') }}">Register</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        {% set menu = knp_menu_get('main', [], {include_homepage: false}) %}
+        {{ knp_menu_render(menu) }}
+
+
+        <!-- Heading Row -->
+        <div class="row my-4">
+            <div class="col-lg-8">
+                <img class="img-fluid rounded" src="http://placehold.it/900x400?text={{ title|default(app.request.server.get('SERVER_NAME')|default('title'))}}" alt="">
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <h1>{{ app.request.baseUrl }}</h1>
+                <p>Tobacco News is being revampted, this is the beta site to see the new features.</p>
+                <a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
+            </div>
+
+            <ul>
+                <li><a class="btn btn-lg" href="{{ path('easyadmin', {Entity: 'User'}) }}">EZ Admin -- Users</a></li>
+                <li><a class="btn btn-lg" href="{{ path('easyadmin', {Entity: 'SentEmail'}) }}">EZ Admin -- SentEmail</a></li>
+            </ul>
+
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Call to Action Well -->
+        <div class="card text-white bg-secondary my-4 text-center">
+            <div class="card-body">
+                <p class="text-white m-0">Data updated here will be lost!  Do not use for production, only testing.</p>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Dashboard</h2>
+                        <p class="card-text">The first dashboard is based on SB Admin</p>
+                    </div>
+                    <div class="card-footer">
+                        {#
+                        <a href="{{ path('dashboard') }}" class="btn btn-primary">Dashboard</a>
+                        <a href="{{ path('survos_workflows') }}" class="btn btn-primary">Workflows</a>
+                        #}
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">EZ Admin</h2>
+                        <p class="card-text">The second dashboard offers a collapsable sidebar, etc</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('easyadmin') }}" class="btn btn-primary">EZAdmin Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">azine_email_template_index</h2>
+                        <p class="card-text">azine_email_template_index</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('survos_landing') }}" class="btn btn-primary">More Info</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-4 -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://blackrockdigital.github.io/startbootstrap-small-business/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}

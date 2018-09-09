@@ -5,7 +5,12 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="Survos\LandingBundle\LandingService" alias="survos_landing_bundle.landing_service" public="true"/>
         <service id="survos_landing_bundle.landing_service" class="Survos\LandingBundle\LandingService" />
-        <service alias="survos_landing_bundle.landing_service" id="Survos\LandingBundle\LandingService" />
+
+        <service id="Survos\LandingBundle\Controller\LandingController" public="true">
+            <argument type="service" id="survos_landing_bundle.landing_service"></argument>
+        </service>
+
     </services>
 </container>
