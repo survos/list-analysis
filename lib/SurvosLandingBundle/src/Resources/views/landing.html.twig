@@ -1,56 +1,56 @@
-{% extends ["@SurvosLanding/public_base.html.twig", "@EasyAdmin/default/layout.html.twig"] %}
+{% extends "@SurvosLanding/public_base.html.twig" %}
 
 {% block title "" %}
 
-{% block content %}
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">{{ app.request.baseUrl }}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
+{% block orig_navbar %}
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">{{ app.request.baseUrl }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Logout {{ app.user }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil">Edit</i> </a>
                     </li>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Logout {{ app.user }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil">Edit</i> </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('fos_user_profile_show') }}">Profile</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('fos_user_security_login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('fos_user_registration_register') }}">Register</a>
-                        </li>
-                    {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="{{ path('fos_user_profile_show') }}">Profile</a>
                     </li>
-                </ul>
-            </div>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_registration_register') }}">Register</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
 
     <!-- Page Content -->
     <div class="container">
 
-        {% set menu = knp_menu_get('main', [], {include_homepage: false}) %}
-        {{ knp_menu_render(menu) }}
 
 
         <!-- Heading Row -->
@@ -61,7 +61,7 @@
             <!-- /.col-lg-8 -->
             <div class="col-lg-4">
                 <h1>{{ app.request.baseUrl }}</h1>
-                <p>Tobacco News is being revampted, this is the beta site to see the new features.</p>
+                <p>{{ title|default(app.request.server.get('SERVER_NAME')|default('site message')) }} Description</p>
                 <a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
             </div>
 

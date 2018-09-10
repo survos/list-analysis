@@ -25,7 +25,7 @@ class LandingController extends Controller
     public function landing(Request $request)
     {
 
-        return $this->render("@SurvosLanding/home.html.twig", [
+        return $this->render("@SurvosLanding/landing.html.twig", [
         ]);
     }
 

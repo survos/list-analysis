@@ -1,0 +1,23 @@
+# app/config/config.yml
+fos_user:
+    db_driver: orm # "%fos_user_driver%"
+    user_class: App\Entity\User
+#    service:
+#        user_manager: App\Services\UserManager
+    firewall_name: secured_area
+    from_email:
+        sender_name: Tac # "%mail.sender_name%"
+        address: "tacman@gmail.com" # "%mail.sender_address%"
+    registration:
+        form:
+            type: App\Form\RegistrationFormType
+        confirmation:
+            enabled:    false
+            template:   '@FOSUser/Registration/email.txt.twig'
+    resetting:
+        token_ttl: 3600
+    profile:
+        form:
+            type: posse_user_profile
+    use_flash_notifications: false
+

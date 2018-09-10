@@ -22,11 +22,24 @@ class LandingMenuBuilder
     {
         $menu = $this->factory->createItem('root');
 
-        $menu->addChild('Home', ['route' => 'survos_landing']);
-        $menu->addChild('About', ['route' => 'survos_landing']);
+        $menu->setChildrenAttribute('class', 'nav navbar-nav');
+        $menu->addChild('Home', ['route' => 'survos_landing'])
+            ->setAttribute('icon', 'fa fa-home');
+        $menu->addChild('xx', ['route' => 'survos_landing']);
         $menu->addChild('Three', ['route' => 'survos_landing']);
         // ... add more children
 
+        return $menu;
+    }
+
+    public function createTestMenu(array $options)
+    {
+        $menu = $this->factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav');
+        $menu->addChild('Projects', array('uri' => '#acme_hello_projects'))
+            ->setAttribute('icon', 'fa fa-list');
+        $menu->addChild('Employees', array('uri' => '#acme_hello_employees'))
+            ->setAttribute('icon', 'fa fa-group');
         return $menu;
     }
 }

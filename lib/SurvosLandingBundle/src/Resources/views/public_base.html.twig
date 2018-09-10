@@ -22,6 +22,7 @@
         <link href="{{ asset('/bundles/easyadmin/stylesheet/bootstrap.min.css') }}" rel="stylesheet">
     {% endblock %}
 
+
     <!-- Bootstrap Core CSS -->
 
 
@@ -61,11 +62,51 @@
 #}
 
     {% block body %}
-        {{ block('content') }}
+        {% block navbar %}
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    {# Brand and toggle get grouped for better mobile display #}
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" xxdata-toggle="collapse" data-target="#admin-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Awesome!</a>
+                    </div>
+
+                    {# Collect the nav links, forms, and other content for toggling #}
+                    <div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
+                        {% set menu = knp_menu_get('landing_menu', [], {include_homepage: false}) %}
+                        {{ knp_menu_render(menu) }}
+
+                        {% set menu = knp_menu_get('test_menu', [], {include_homepage: false}) %}
+                        {{ knp_menu_render(menu) }}
+
+                        {#
+                        {% set menu = knp_menu_get('landing_menu', [], {
+                            currentClass: 'active',
+                            template: 'SurvosLandingBundle:Menu:knp_menu.html.twig',
+                            include_homepage: false}) %}
+                        {{ knp_menu_render(menu) }}
+                        #}
+
+                    </div>
+                </div>
+            </div>
+        {% endblock navbar %}
+
+        <div class="content" style="margin-top: 60px;">
+            {{ block('content') }}
+        </div>
+
     {% endblock %}
 
     {% block javascripts %}
         <script src="{{ asset('build/js/app.js') }}"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         {#
         <script src="/sb2-js/sb-admin-2.js"></script>
         <script src="/sb2-vendor/metisMenu/metisMenu.min.js"></script>

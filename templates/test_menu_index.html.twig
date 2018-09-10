@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Awesome Page!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+{% endblock %}
+
+{% block body %}
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            {# Brand and toggle get grouped for better mobile display #}
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Awesome!</a>
+            </div>
+
+            {# Collect the nav links, forms, and other content for toggling #}
+            <div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
+                {{ knp_menu_render('landing_menu', {'currentClass': 'active', 'template': 'SurvosLandingBundle::knp_menu.html.twig'}) }}
+                {{ knp_menu_render('test_menu', {'currentClass': 'active', 'template': 'SurvosLandingBundle::knp_menu.html.twig'}) }}
+            </div>
+        </div>
+    </div>
+    <div class="content" style="margin-top: 60px;">
+        Content goes here!
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+{% endblock %}
