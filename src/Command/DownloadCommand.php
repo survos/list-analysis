@@ -116,13 +116,12 @@ class DownloadCommand extends ContainerAwareCommand
                 $io->writeln(sprintf("%s: %s bytes", $savedFile, filesize($savedFile)));
             }
 
+            /*
             $content = file_get_contents($savedFile);
 
             $this->archiveService->init($content, $archive)
                 ->import();
 
-
-            /*
 
             $response = $guzzleClient->get($url, ['sink' => $savedFile]);
             $io->writeln($savedFile . " downloaded: " . filesize($savedFile));

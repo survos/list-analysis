@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class MessageController extends Controller
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/message-index", name="index")
      */
     public function index()
     {

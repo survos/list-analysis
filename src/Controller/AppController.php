@@ -13,10 +13,8 @@ class AppController extends AbstractController
      */
     public function index(LandingService $landingService)
     {
-
-        return $this->render('app/index.html.twig', [
-            'entities' => $landingService->getEntities(),
-            'controller_name' => 'AppController',
+        return $this->render('test_menu_index.html.twig', [
+            'entities' => $landingService->getEntities()
         ]);
     }
 }

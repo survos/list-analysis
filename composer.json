@@ -8,6 +8,8 @@
         "ext-sqlite3": "*",
         "easycorp/easyadmin-bundle": "^1.17",
         "fabpot/goutte": "^3.2",
+        "friendsofsymfony/user-bundle": "^2.1",
+        "knplabs/knp-menu-bundle": "^2.2",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "*",
         "symfony/console": "*",
@@ -24,7 +26,8 @@
         "symfony/twig-bundle": "*",
         "symfony/validator": "*",
         "symfony/web-link": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "twbs/bootstrap": "^4.1"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

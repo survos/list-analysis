@@ -125,7 +125,7 @@ class AppImportArchivesCommand extends ContainerAwareCommand
         // for each month, starting in Jan, 2006
         for ($year=2005; $year<=date('Y'); $year++) {
             for ($month=1; $month<=12; $month++) {
-                $filename = sprintf('/var/www/rappnettext/%s-%s.txt.gz', $year,
+                $filename = sprintf('../data/%s-%s.txt.gz', $year,
                     \DateTime::createFromFormat('!m', $month)->format('F'));
                 if (!file_exists($filename)) {
                     $io->writeln("Skipping $filename");
