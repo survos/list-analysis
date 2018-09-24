@@ -35,6 +35,7 @@ services:
         tags:
         - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
 
+    ## this should probably be somewhere else besides services.yaml!
     survos.landing_menu_builder:
         class: Survos\LandingBundle\Menu\LandingMenuBuilder
         arguments: ["@knp_menu.factory"]

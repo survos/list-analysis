@@ -45,8 +45,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "Survos\\LandingBundle\\": "lib/SurvosLandingBundle/src/"
+            "Survos\\LandingBundle\\": "lib/SurvosLandingBundle/src/",
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
