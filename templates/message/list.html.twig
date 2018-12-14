@@ -2,7 +2,19 @@
 
 {% block body %}
 
+    <h1>
+        {{ messages|length }} Messages matching {{ searchString }}
+    </h1>
+
     <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Sender</th>
+            <th>Subject</th>
+            <th>Body</th>
+        </tr>
+        </thead>
         <tbody>
         {% for message in messages %}
             <tr>

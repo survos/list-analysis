@@ -4,12 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Entity\TimePeriod;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Solarium\Client;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
-class MessageController extends Controller
+class MessageController extends Controller implements ContainerAwareInterface
 {
+
+    use ContainerAwareTrait;
+
     /**
      * @Route("/message-index", name="index")
      */
@@ -36,12 +43,21 @@ class MessageController extends Controller
     /**
      * @Route("/messages", name="message")
      */
-    public function message()
+    public function message(Request $request) // , Client $client)
     {
+        $client = $this->get('solr.client');
+        $searchString = $request->get('q', 'sperryville');
+
+        $q = $client->createQuery(Message::class);
+        $q->addSearchTerm('subject', $searchString);
+        $messages = $q->getResult();
+        /*
         $repo = $this->getDoctrine()->getRepository(Message::class);
         $messages = $repo->findBy([], null, 4);
+        */
         return $this->render("message/list.html.twig", [
-            'messages' => $messages
+            'messages' => $messages,
+            'searchString' => $searchString
         ]);
     }
 }

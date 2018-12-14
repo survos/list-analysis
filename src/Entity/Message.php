@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FS\SolrBundle\Doctrine\Annotation as Solr;
 
 /**
+ * @Solr\Document()
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
  */
 class Message
@@ -33,6 +35,7 @@ class Message
 
     /**
      * @ORM\Id
+     * @Solr\Id
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $id;
@@ -53,6 +56,7 @@ class Message
     private $fromText; // original $header['From']
 
     /**
+     * @Solr\Field(type="date", getter="format('Y-m-d\TH:i:s.z\Z')")
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $time;
@@ -63,6 +67,7 @@ class Message
     private $body;
 
     /**
+     * @Solr\Field(type="string")
      * @ORM\Column(type="string", length=160, nullable=false)
      */
     private $subject;

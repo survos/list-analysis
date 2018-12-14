@@ -89,8 +89,14 @@
     "fabpot/goutte": {
         "version": "v3.2.3"
     },
+    "facebook/webdriver": {
+        "version": "1.6.0"
+    },
     "fig/link-util": {
         "version": "1.0.0"
+    },
+    "floriansemm/solr-bundle": {
+        "version": "v1.7.1"
     },
     "friendsofsymfony/user-bundle": {
         "version": "v2.1.2"
@@ -113,8 +119,14 @@
     "knplabs/knp-menu-bundle": {
         "version": "v2.2.1"
     },
+    "minimalcode/search": {
+        "version": "1.0.1"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
+    },
+    "myclabs/deep-copy": {
+        "version": "1.8.1"
     },
     "nikic/php-parser": {
         "version": "v4.0.3"
@@ -155,6 +167,12 @@
     "psr/simple-cache": {
         "version": "1.0.0"
     },
+    "ralouphie/getallheaders": {
+        "version": "2.0.5"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
         "recipe": {
@@ -163,6 +181,9 @@
             "version": "4.0",
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
+    },
+    "solarium/solarium": {
+        "version": "4.2.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.2"
@@ -289,6 +310,9 @@
     },
     "symfony/orm-pack": {
         "version": "v1.0.5"
+    },
+    "symfony/panther": {
+        "version": "v0.2.0"
     },
     "symfony/phpunit-bridge": {
         "version": "4.1",
