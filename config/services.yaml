@@ -27,6 +27,14 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    FS\SolrBundle\Doctrine\Mapper\MetaInformationFactory:
+      alias: solr.meta.information.factory
+
+    FS\SolrBundle\Doctrine\Mapper\EntityMapperInterface:
+      alias: solr.doctrine.entity_mapper
+
+    FS\SolrBundle\Doctrine\Annotation\AnnotationReader:
+        alias: solr.doctrine.annotation.annotation_reader
 
 
     xxsurvos.landing_menu_builder:
@@ -47,3 +55,19 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+#    solr.class:
+#      class: FS\SolrBundle\Solr
+#      public: true
+#
+#    solr.client.adapter:
+#      public: true
+#
+#    Solarium\Client:
+#      public: true
+#
+#    solr.meta.information.factory:
+#      public: true
+#      class: FS\SolrBundle\Doctrine\Mapper\MetaInformationFactory
+#
+#
