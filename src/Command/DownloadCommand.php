@@ -31,7 +31,7 @@ class DownloadCommand extends ContainerAwareCommand
         ;
     }
 
-    public function __construct($name = null, EntityManagerInterface $entityManager, MailArchiveService $mailArchiveService)
+    public function __construct(EntityManagerInterface $entityManager, MailArchiveService $mailArchiveService, $name = null)
     {
         parent::__construct($name);
         $this->em = $entityManager;

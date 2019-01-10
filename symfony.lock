@@ -185,6 +185,9 @@
     "solarium/solarium": {
         "version": "4.2.0"
     },
+    "survos/landing-bundle": {
+        "version": "dev-master"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.2"
     },
@@ -208,6 +211,9 @@
             "version": "3.3",
             "ref": "9f94d3ea453cd8a3b95db7f82592d7344fe3a76a"
         }
+    },
+    "symfony/contracts": {
+        "version": "v1.0.2"
     },
     "symfony/css-selector": {
         "version": "v4.1.4"
@@ -353,9 +359,6 @@
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
         }
     },
-    "symfony/security": {
-        "version": "v4.0.3"
-    },
     "symfony/security-bundle": {
         "version": "3.3",
         "recipe": {
@@ -364,6 +367,18 @@
             "version": "3.3",
             "ref": "85834af1496735f28d831489d12ab1921a875e0d"
         }
+    },
+    "symfony/security-core": {
+        "version": "v4.2.2"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.2.2"
+    },
+    "symfony/security-guard": {
+        "version": "v4.2.2"
+    },
+    "symfony/security-http": {
+        "version": "v4.2.2"
     },
     "symfony/serializer": {
         "version": "v4.1.4"
@@ -416,6 +431,9 @@
     "symfony/var-dumper": {
         "version": "v4.0.3"
     },
+    "symfony/var-exporter": {
+        "version": "v4.2.2"
+    },
     "symfony/web-link": {
         "version": "v4.1.4"
     },
@@ -435,6 +453,15 @@
             "branch": "master",
             "version": "3.3",
             "ref": "c72d107d077f1654428edaed69415d0228c1aefe"
+        }
+    },
+    "symfony/workflow": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "7c8798612bf94fbe4cb75056a4cd7ea3a9183698"
         }
     },
     "symfony/yaml": {
