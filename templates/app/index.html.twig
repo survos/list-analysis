@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}RappNet{% endblock %}
 
 {% block body %}
 <style>
@@ -8,16 +8,18 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+
 <div class="example-wrapper">
 
+    <div id="div_chart"></div>
 
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        {% for class, definition in entities %}
-        <li>{{ dump(definition) }} </li>
-        {% endfor %}
-        </ul>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    {{ gc_draw(piechart, 'div_chart') }}
+</script>
 {% endblock %}

@@ -6,9 +6,11 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-sqlite3": "*",
-        "easycorp/easyadmin-bundle": "^1.17",
+        "api-platform/api-pack": "dev-master",
+        "cmen/google-charts-bundle": "dev-master",
+        "easycorp/easyadmin-bundle": "^2.0",
         "fabpot/goutte": "^3.2",
-        "floriansemm/solr-bundle": "^1.7",
+        "friendsofsymfony/elastica-bundle": "^5.1@dev",
         "friendsofsymfony/user-bundle": "^2.1",
         "knplabs/knp-menu-bundle": "^2.2",
         "sensio/framework-extra-bundle": "^5.1",
@@ -23,6 +25,7 @@
         "symfony/orm-pack": "^1.0",
         "symfony/process": "*",
         "symfony/security-bundle": "*",
+        "symfony/serializer": "4.2.*",
         "symfony/serializer-pack": "*",
         "symfony/swiftmailer-bundle": "^3.1",
         "symfony/twig-bundle": "*",
@@ -56,6 +59,7 @@
             "App\\Tests\\": "tests/"
         }
     },
+    "minimum-stability": "dev",
     "replace": {
         "paragonie/random_compat": "*",
         "symfony/polyfill-ctype": "*",

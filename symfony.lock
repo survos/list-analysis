@@ -1,4 +1,19 @@
 {
+    "api-platform/api-pack": {
+        "version": "dev-master"
+    },
+    "api-platform/core": {
+        "version": "2.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.1",
+            "ref": "18727d8f229306860b46955f438e1897421da689"
+        }
+    },
+    "cmen/google-charts-bundle": {
+        "version": "dev-master"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -86,6 +101,9 @@
     "egulias/email-validator": {
         "version": "2.1.5"
     },
+    "elasticsearch/elasticsearch": {
+        "version": "v6.1.0"
+    },
     "fabpot/goutte": {
         "version": "v3.2.3"
     },
@@ -95,8 +113,14 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
-    "floriansemm/solr-bundle": {
-        "version": "v1.7.1"
+    "friendsofsymfony/elastica-bundle": {
+        "version": "5.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "5.0",
+            "ref": "3f73f240ee0c3719e89f1c994ce66904e2ef84f6"
+        }
     },
     "friendsofsymfony/user-bundle": {
         "version": "v2.1.2"
@@ -110,6 +134,12 @@
     "guzzlehttp/psr7": {
         "version": "1.4.2"
     },
+    "guzzlehttp/ringphp": {
+        "version": "1.1-dev"
+    },
+    "guzzlehttp/streams": {
+        "version": "3.0-dev"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -119,14 +149,17 @@
     "knplabs/knp-menu-bundle": {
         "version": "v2.2.1"
     },
-    "minimalcode/search": {
-        "version": "1.0.1"
-    },
     "monolog/monolog": {
         "version": "1.23.0"
     },
-    "myclabs/deep-copy": {
-        "version": "1.8.1"
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "f0436fc35fca88eada758311f8de43bfb61f1980"
+        }
     },
     "nikic/php-parser": {
         "version": "v4.0.3"
@@ -170,8 +203,11 @@
     "ralouphie/getallheaders": {
         "version": "2.0.5"
     },
-    "ramsey/uuid": {
-        "version": "3.8.0"
+    "react/promise": {
+        "version": "2.x-dev"
+    },
+    "ruflin/elastica": {
+        "version": "6.1.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
@@ -181,9 +217,6 @@
             "version": "4.0",
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
-    },
-    "solarium/solarium": {
-        "version": "4.2.0"
     },
     "survos/landing-bundle": {
         "version": "dev-master"
@@ -485,10 +518,10 @@
     "webmozart/assert": {
         "version": "1.3.0"
     },
+    "willdurand/negotiation": {
+        "version": "2.x-dev"
+    },
     "zendframework/zend-code": {
         "version": "3.3.0"
-    },
-    "zendframework/zend-eventmanager": {
-        "version": "3.2.0"
     }
 }
