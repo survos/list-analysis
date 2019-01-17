@@ -1,0 +1,22 @@
+App\Entity\Message:
+  attributes:
+    id:
+      groups: ['export', 'Default', 'search']
+    subject:
+      groups: ['Default', 'search']
+    body:
+      groups: ['Default', 'search']
+    senderName:
+      groups: ['Default', 'search']
+    time:
+      groups: ['Default', 'search']
+
+App\Entity\Account:
+  attributes:
+    id:
+      groups: ['export', 'Default', 'search']
+    sender:
+      groups: ['export', 'Default', 'search']
+
+
+

@@ -1,6 +1,0 @@
-fs_solr:
-  endpoints:
-    rappnet_core:
-      dsn: http://localhost:8983/solr
-      core: rappnet_core
-      timeout: 5

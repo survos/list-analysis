@@ -13,6 +13,29 @@ class AccountRepository extends ServiceEntityRepository
         parent::__construct($registry, Account::class);
     }
 
+    /** @todo: filter by timeframe, loc */
+    public function findTopAccounts($count = 10)
+    {
+        return $this->createQueryBuilder('a')
+            // ->where('a.something = :value')->setParameter('value', $value)
+            ->orderBy('a.count', 'DESC')
+            ->setMaxResults($count)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function topAccountsMessageCount($accountLimit = 10)
+    {
+        // better to do an actual count, but this works
+        $count = 0;
+        /** @var Account $account */
+        foreach ($this->findTopAccounts($accountLimit) as $account) {
+            $count += $account->getCount();
+        }
+        return $count;
+    }
+
     /*
     public function findBySomething($value)
     {

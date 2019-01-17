@@ -18,7 +18,6 @@ easy_admin:
         - entity: Message
           icon: email
         - entity: Account
-        - entity: Archive
         - entity: TimePeriod
     show:
         max_results: 20
@@ -32,5 +31,3 @@ easy_admin:
             class: App\Entity\Account
         TimePeriod:
             class: App\Entity\TimePeriod
-        Archive:
-            class: App\Entity\Archive

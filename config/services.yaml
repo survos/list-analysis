@@ -5,6 +5,11 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    elastica_enabled: false # // tie to env!!!
+    elastica_listener:
+        insert: '%elastica_enabled%'
+        update: '%elastica_enabled%'
+        delete: '%elastica_enabled%'
 
 services:
     # default configuration for services in *this* file
@@ -26,16 +31,6 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-
-    FS\SolrBundle\Doctrine\Mapper\MetaInformationFactory:
-      alias: solr.meta.information.factory
-
-    FS\SolrBundle\Doctrine\Mapper\EntityMapperInterface:
-      alias: solr.doctrine.entity_mapper
-
-    FS\SolrBundle\Doctrine\Annotation\AnnotationReader:
-        alias: solr.doctrine.annotation.annotation_reader
-
 
     xxsurvos.landing_menu_builder:
         class: Survos\LandingBundle\Menu\LandingMenuBuilder

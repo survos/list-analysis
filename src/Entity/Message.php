@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use FS\SolrBundle\Doctrine\Annotation as Solr;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @Solr\Document()
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
+ * @ApiResource()
+ *
  */
 class Message
 {
@@ -35,7 +37,6 @@ class Message
 
     /**
      * @ORM\Id
-     * @Solr\Id
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $id;
@@ -45,6 +46,7 @@ class Message
      */
     private $inReplyTo;
 
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
     private $inReplyToMessageId;
@@ -52,23 +54,24 @@ class Message
 
     /**
      * @ORM\Column(type="text", nullable=false)
+     * @Groups("Default")
      */
     private $fromText; // original $header['From']
 
     /**
-     * @Solr\Field(type="date", getter="format('Y-m-d\TH:i:s.z\Z')")
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $time;
 
     /**
      * @ORM\Column(type="text", nullable=false)
+     * @Groups("Default")
      */
     private $body;
 
     /**
-     * @Solr\Field(type="string")
      * @ORM\Column(type="string", length=160, nullable=false)
+     * @Groups("Default")
      */
     private $subject;
 
@@ -137,7 +140,7 @@ class Message
      */
     public function getMessageId()
     {
-        return $this->messageId;
+        return $this->id; // $this->messageId;
     }
 
     /**

@@ -2,12 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
+ * @ORM\Table(indexes={@ORM\Index(name="count_idx", columns={"count"})})
+ * @ApiResource(
+ *     normalizationContext={"groups"={"Default"}},
+ *     denormalizationContext={"groups"={"Default","export" }}
+ * )
  */
 class Account
 {
@@ -15,6 +22,7 @@ class Account
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("Default")
      */
     private $id;
 
@@ -25,6 +33,7 @@ class Account
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Groups("Default")
      */
     private $senderName;
 
@@ -34,7 +43,7 @@ class Account
     private $count;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="account")
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="account", fetch="EXTRA_LAZY")
      */
     private $messages;
 
