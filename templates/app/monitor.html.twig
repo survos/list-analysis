@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for name, index in indexes %}
+    <h2>{{ name }}</h2>
+
+    {{ dump(index.stats) }}
+
+    {% endfor %}
+{% endblock %}

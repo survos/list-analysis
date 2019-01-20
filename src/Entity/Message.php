@@ -21,7 +21,7 @@ class Message
      */
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Account", inversedBy="messages", fetch="EAGER")
      */
     private $account;
 

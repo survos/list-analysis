@@ -1,0 +1,8 @@
+App\Entity\Message:
+  attributes:
+    id:
+      groups: ['Default', 'sender', 'subject']
+    senderName:
+      groups: ['Default','sender']
+    subject:
+      groups: ['Default','subject']

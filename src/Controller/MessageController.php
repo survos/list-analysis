@@ -41,16 +41,46 @@ class MessageController extends Controller implements ContainerAwareInterface
     }
 
     /**
+     * @Route("/monitor", name="monitor_elastic")
+     */
+    public function monitorElastica(Request $request)
+    {
+
+        $client = $this->get('fos_elastica.client');
+
+        foreach ($client->getCluster()->getIndexNames() as $name) {
+            $index = $client->getIndex($name);
+            $indexData[$name] = $index;
+            // $index->getStats()
+            dump($index->getStats());
+        }
+
+        return $this->render('app/monitor.html.twig', [
+            'indexes' => $indexData
+        ]);
+    }
+
+    /**
      * @Route("/messages", name="message")
      */
     public function message(Request $request) // , Client $client)
     {
-        $client = $this->get('solr.client');
+
         $searchString = $request->get('q', 'sperryville');
+
+        $finder = $this->get('fos_elastica.index.app');
+        $messages = $finder->search($searchString);
+        dump($messages);
+
+        // $messages = $finder->findPaginated($searchString)->getResult();
+
+        /*
+        $client = $this->get('solr.client');
 
         $q = $client->createQuery(Message::class);
         $q->addSearchTerm('subject', $searchString);
         $messages = $q->getResult();
+        */
         /*
         $repo = $this->getDoctrine()->getRepository(Message::class);
         $messages = $repo->findBy([], null, 4);
