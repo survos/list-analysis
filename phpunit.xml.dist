@@ -26,6 +26,10 @@
         <!-- ###+ nelmio/cors-bundle ### -->
         <env name="CORS_ALLOW_ORIGIN" value="^https?://localhost(:[0-9]+)?$"/>
         <!-- ###- nelmio/cors-bundle ### -->
+
+        <!-- ###+ sentry/sentry-symfony ### -->
+        <env name="SENTRY_DSN" value=""/>
+        <!-- ###- sentry/sentry-symfony ### -->
     </php>
 
     <testsuites>
