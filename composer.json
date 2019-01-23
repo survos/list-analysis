@@ -53,7 +53,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Survos\\LandingBundle\\": "../Survos/LandingBundle/src/",
+            "Survos\\LandingBundlex\\": "../Survos/LandingBundle/src/",
             "App\\": "src/"
         }
     },
@@ -73,7 +73,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../Survos/LandingBundle"
+            "url": "../Survos/LandingBundlex"
         }
     ],
     "scripts": {

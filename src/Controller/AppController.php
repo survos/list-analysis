@@ -23,11 +23,13 @@ class AppController extends AbstractController
 
     private $messageRepo;
     private $accountRepo;
+    private $timePeriodRepo;
 
-    public function __construct(MessageRepository $messageRepository, AccountRepository $accountRepository)
+    public function __construct(MessageRepository $messageRepository, AccountRepository $accountRepository, TimePeriodRepository $timePeriodRepository)
     {
         $this->messageRepo = $messageRepository;
         $this->accountRepo = $accountRepository;
+        $this->timePeriodRepo = $timePeriodRepository;
     }
 
     /**
@@ -64,6 +66,33 @@ class AppController extends AbstractController
             ->setFormat('decimal');
 
         return $chart;
+    }
+
+    private function getMonthlyChartData()
+    {
+
+        $x = [];
+        /** @var TimePeriod $period */
+        foreach ($this->timePeriodRepo->findAll() as $period) {
+            if (empty($yearArray[$period->getYear()])) {
+                $yearArray[$period->getYear()] = 0;
+            }
+            $yearArray[$period->getYear()] += $period->getImportedMessageCount();
+        }
+
+        foreach ($yearArray as $year => $yearData) {
+            array_push($x, [$year, $yearData]);
+        }
+
+        return $x;
+    }
+
+    /**
+     * @Route("/monthly-counts.{_format}", name="monthly_count_data")
+     */
+    public function monthlyCountData(Request $request, $_format='json', AccountRepository $repo, MessageRepository $messageRepository, TimePeriodRepository $timePeriodRepository)
+    {
+        return new JsonResponse($this->getMonthlyChartData());
     }
 
 
@@ -168,9 +197,9 @@ class AppController extends AbstractController
                 sprintf("%s - %s", $account->getShortName(), number_format($c = $accountData['cnt'], 0)), $c]);
             $topTotal += $c;
         }
-        dump($total, $topTotal);
         $everyoneElse = $total - $topTotal;
-        array_push($data, [sprintf('Everyone Else (%s)', number_format($everyoneElse)), $everyoneElse]);
+        // could also sort the array
+        array_unshift($data, [sprintf('Everyone Besides Top  (%s)', number_format($everyoneElse)), $everyoneElse]);
 
 
         return [
@@ -203,23 +232,24 @@ class AppController extends AbstractController
     public function piechart(Request $request, AccountRepository $repo, MessageRepository $messageRepository, TimePeriodRepository $timePeriodRepository)
     {
 
-        $accountLimit = $request->get('limit', 10);
 
         /** @var Message $newestMessage */
         $newestMessage = $messageRepository->findOneBy([], ['time' => 'DESC']);
-        $oldestMessage = $messageRepository->findOneBy([], ['time' => 'ASC']);
+        // $oldestMessage = new \DateTime('2006-01-01'); // $messageRepository->findOneBy([], ['time' => 'ASC']);
 
 
         $defaults = [
-            'accountLimit' => 10,
+            'accountLimit' => 3,
             // 'startDate' => '10/16/2013',
-            'startDate' => $oldestMessage->getTime(),
+            'startDate' => new \DateTime('2006-01-01'), // $oldestMessage->getTime(),
             'endDate' => $newestMessage->getTime()
         ];
 
         $searchForm = $this->createForm(MessageSearchFormType::class, $defaults);
         $searchForm->handleRequest($request);
 
+
+        $accountLimit = $searchForm->get('accountLimit')->getData();
 
 
 
@@ -231,6 +261,7 @@ class AppController extends AbstractController
 
         $dataSummary = $this->getMessageCountData($defaults);
 
+        /*
 
         $pieChart->getData()->setArrayToDataTable($dataSummary['topAccounts']);
 
@@ -241,14 +272,15 @@ class AppController extends AbstractController
         $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
         $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
         $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
-        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);\
+        */
 
         return $this->render('app/index.html.twig',
             array_merge($dataSummary,
 
             [
             'searchForm' => $searchForm->createView(),
-            'piechart' => $pieChart,
+            // 'piechart' => $pieChart,
             'columnChart' => $this->getMonthlyChart($timePeriodRepository),
             'timePeriods' => $timePeriodRepository->findAll()
         ]) );

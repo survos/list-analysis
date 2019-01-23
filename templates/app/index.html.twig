@@ -2,44 +2,61 @@
 
 {% block title %}RappNet{% endblock %}
 
+{# templates/form/fields.html.twig #}
+{% form_theme searchForm _self %}
+{% block form_row %}
+    {% spaceless %}
+        <span class="form-inline">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            {{ form_help(form) }}
+        </span>
+    {% endspaceless %}
+{% endblock form_row %}
+
 {% block body %}
+
+
+    {# base url, so we don't have to load fosrouting #}
+    {% set url = path('message_count_data')  %}
+
 
     {{ encore_entry_link_tags('home') }}
 
-    <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-    <article style="padding:50px 20px">
-
-        <div id="slider"></div>
-        {{ form(searchForm, {
-            attr: {id: 'searchForm'}
+    <div>
+        {{ form_start(searchForm, {
+            name: 'searchForm',
+            widget_attrs: {class: 'form-inline'},
+            attr: {id: 'searchForm', class: 'form-inline'}
         }) }}
 
-        <span id="header">
-            Header goes here.
-        </span>
+        {{ form_rest(searchForm) }}
+        <input type="submit" value="Permalink" class="btn btn-sm" />
+        {{ form_end(searchForm) }}
+    </div>
 
-        The top <span id="top_posters">top_posters</span> posters accounted for <span id="top_posters_message_count"></span> of <span id="total_message_count"></span> messages.
-
-    </article>
+    <div id="myPieChart" data-url="{{ url }}"></div>
 
     <div class="row">
-        <div class="col-md-6">
-            <div id="div_chartxx" ></div>
-            {% set url = path('message_count_data')  %}
-            <a id="url_link" target="_blank" href="{{ url }}">{{ url }}</a><br />
-
-            <div id="myPieChart" height="600" data-url="{{ url }}"></div>
+        <div class="col-md-9">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
+            What's here?
             <div id="column_chartxx"></div>
         </div>
     </div>
 
-    <div class="example-wrapper">
+<div class="row">
+    <div class="col-md-12">
+    {% if app.environment == 'dev' %}
+    <div id="column_chart" ></div>
+        <a id="url_link" target="_blank" href="{{ url }}">
+            <i class="fa fa-bug">Debug</i>
+        </a><br />
+        <a href="{{ path('monthly_count_data') }}">Monthly Data</a>
+    {% endif %}
+    </div>
 </div>
 
 {% endblock %}
@@ -50,6 +67,8 @@
 
     {{ encore_entry_script_tags('home') }}
 
+    {#
+
     <textarea>
         Pie Chart
             {{ gc_draw(piechart, 'div_chart') }}
@@ -59,18 +78,15 @@
         {{ gc_draw(columnChart, 'column_chart') }}
 
     </textarea>
+    #}
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <script type="text/javascript">
-
-    </script>
 
 
     <script type="text/javascript">
         {#
     {{ gc_draw(piechart, 'div_chart') }}
-    {{ gc_draw(columnChart, 'column_chart') }}
     #}
+    {{ gc_draw(columnChart, 'column_chart') }}
 </script>
 {% endblock %}

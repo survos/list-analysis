@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e772ac57fef51e3950788a395bc5e84a",
+    "content-hash": "5c39ef703c15f05024aeaa8871d3750e",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -790,12 +790,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "2f88b7693408c10ec1311b5d996def5bb236bd57"
+                "reference": "40e9ac053eca8a9d01a858d7a702642f7744b080"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/2f88b7693408c10ec1311b5d996def5bb236bd57",
-                "reference": "2f88b7693408c10ec1311b5d996def5bb236bd57",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/40e9ac053eca8a9d01a858d7a702642f7744b080",
+                "reference": "40e9ac053eca8a9d01a858d7a702642f7744b080",
                 "shasum": ""
             },
             "require": {
@@ -850,7 +850,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2019-01-21T05:31:05+00:00"
+            "time": "2019-01-22T08:49:14+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -1116,12 +1116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "f95233773111e24888e8f4581eb08e1a317fc8b6"
+                "reference": "cf7f94b0bcfbd7d9c240aee759dc6619bc9ad796"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/f95233773111e24888e8f4581eb08e1a317fc8b6",
-                "reference": "f95233773111e24888e8f4581eb08e1a317fc8b6",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/cf7f94b0bcfbd7d9c240aee759dc6619bc9ad796",
+                "reference": "cf7f94b0bcfbd7d9c240aee759dc6619bc9ad796",
                 "shasum": ""
             },
             "require": {
@@ -1190,7 +1190,7 @@
                 "migrations",
                 "php"
             ],
-            "time": "2019-01-20T00:33:49+00:00"
+            "time": "2019-01-22T20:56:11+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -1748,12 +1748,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSElasticaBundle.git",
-                "reference": "1718aa74415d2760d9d533391be24e05c741de76"
+                "reference": "84f5e1cd06ab0960745a3cea517f5cc2e3825d17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/1718aa74415d2760d9d533391be24e05c741de76",
-                "reference": "1718aa74415d2760d9d533391be24e05c741de76",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/84f5e1cd06ab0960745a3cea517f5cc2e3825d17",
+                "reference": "84f5e1cd06ab0960745a3cea517f5cc2e3825d17",
                 "shasum": ""
             },
             "require": {
@@ -1827,7 +1827,7 @@
                 "mongodb",
                 "search"
             ],
-            "time": "2019-01-21T12:31:51+00:00"
+            "time": "2019-01-23T11:36:36+00:00"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -3354,11 +3354,16 @@
         {
             "name": "survos/landing-bundle",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/LandingBundle.git",
+                "reference": "6210ae290038eb55a95a18f079f605d251e8970a"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Survos/LandingBundle",
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/LandingBundle/zipball/6210ae290038eb55a95a18f079f605d251e8970a",
                 "reference": "6210ae290038eb55a95a18f079f605d251e8970a",
-                "shasum": null
+                "shasum": ""
             },
             "require": {
                 "easycorp/easyadmin-bundle": "^1.17",
@@ -3377,6 +3382,7 @@
                     "Survos\\LandingBundle\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3386,7 +3392,8 @@
                     "email": "tacman@gmail.com"
                 }
             ],
-            "description": "Add a landing and login page to a Symfony4 application"
+            "description": "Add a landing and login page to a Symfony4 application",
+            "time": "2018-10-20T14:41:31+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4390,12 +4397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "670df540cb2e4f1a5c37fca1bb9b395b5c88df33"
+                "reference": "7417abad07bbc35c0124181934eaeb9b3f037ba2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/670df540cb2e4f1a5c37fca1bb9b395b5c88df33",
-                "reference": "670df540cb2e4f1a5c37fca1bb9b395b5c88df33",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/7417abad07bbc35c0124181934eaeb9b3f037ba2",
+                "reference": "7417abad07bbc35c0124181934eaeb9b3f037ba2",
                 "shasum": ""
             },
             "require": {
@@ -4404,6 +4411,7 @@
             },
             "require-dev": {
                 "composer/composer": "^1.0.2",
+                "symfony/dotenv": "^3.4|^4.0",
                 "symfony/phpunit-bridge": "^3.4.19|^4.1.8",
                 "symfony/process": "^2.7|^3.0|^4.0"
             },
@@ -4430,7 +4438,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2019-01-06T17:06:34+00:00"
+            "time": "2019-01-21T15:23:38+00:00"
         },
         {
             "name": "symfony/form",
@@ -6702,12 +6710,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/webpack-encore-bundle.git",
-                "reference": "9c89795a4577c522101206a1a88272660735257c"
+                "reference": "ae7526cc222c9740e407ed7b695c3765b1f586aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/9c89795a4577c522101206a1a88272660735257c",
-                "reference": "9c89795a4577c522101206a1a88272660735257c",
+                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/ae7526cc222c9740e407ed7b695c3765b1f586aa",
+                "reference": "ae7526cc222c9740e407ed7b695c3765b1f586aa",
                 "shasum": ""
             },
             "require": {
@@ -6748,7 +6756,7 @@
                 }
             ],
             "description": "Integration with your Symfony app & Webpack Encore!",
-            "time": "2019-01-17T02:29:30+00:00"
+            "time": "2019-01-22T15:53:26+00:00"
         },
         {
             "name": "symfony/workflow",

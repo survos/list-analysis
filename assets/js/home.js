@@ -7,25 +7,10 @@ require('jqrangeslider');
 
 $(function () {
 
-    var options = {
-        title: 'Rappnet Posters',
-        height: 600,
-    };
-
     var url = $('#myPieChart').data('url');
 
+
     $('#searchForm').change(function(event) {
-        values = $('#searchForm').serialize();
-        url =  $('#myPieChart').data('url') + '?' + values;
-        $('#url_link').attr('href', url);
-        $('#url_link').html( url);
-        options = {
-            title: 'Rappnet Posters  ' + url,
-            height: 600,
-        };
-
-
-        console.log(url, values);
         drawChart();
     });
 
@@ -34,14 +19,40 @@ $(function () {
 
     function drawChart() {
 
+        values = $('#searchForm').serialize();
+        url =  $('#myPieChart').data('url') + '?' + values;
+        $('#url_link').attr('href', url); // for debugging
+        // $('#url_link').html( url);
+        options = {
+            // title: 'Rappnet Posters  ',
+            // is3D: true,
+            height: 600,
+            reverseCategories: true,
+            pieStartAngle: 180,
+            // chartArea:{left:20,top:0,width:'70%',height:'600'},
+            // pieSliceText: 'labeled',
+            legend: {position: 'labeled'}
+        };
+
+
+        console.log(url, values);
+
         // Instantiate and draw the chart.
         var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
 
 
-        // url = $('#myPieChart').data('url');
-        console.log(url);
-        // Define the chart to be drawn.
+        // Define the data for the chart
         var data = new google.visualization.DataTable();
+
+        // Every time the table fires the "select" event, it should call your
+// selectHandler() function.
+        // google.visualization.events.addListener(chart, 'select', selectHandler);
+        google.visualization.events.addListener(chart, 'click', selectHandler);
+
+        function selectHandler(e) {
+            console.log(e);
+            // alert('A table row was selected');
+        }
 
         var d = [];
         // d.push(['account', 'count']);
@@ -53,9 +64,19 @@ $(function () {
             data.addRows(jsonData.topAccounts);
 
             console.log(jsonData);
+            /*
             $('#total_message_count').html(jsonData.total);
             $('#top_posters_message_count').html(jsonData.topTotal);
-            $('#top_posters').html(jsonData.topAccounts.length);
+            $('#top_posters').html(jsonData.topAccounts.length - 1);
+            */
+            let topPostersCount = jsonData.topAccounts.length - 1;
+            let startDate = $('#startDate').val();
+            let endDate = $('#endDate').val();
+            let percentage = Math.round((jsonData.topTotal / jsonData.total) * 100);
+            // console.log(startDate);
+
+            options.title = `${topPostersCount} People posted ${percentage}% (${jsonData.topTotal} of ${jsonData.total}), `;
+            options.title += `${startDate} to ${endDate}`;
 
             if (false) {
                 $.each( jsonData.topAccounts, function( i, item ) {
@@ -112,7 +133,7 @@ $(function () {
         */
 
 
-        chart.draw(data, options);
+        // chart.draw(data, options);
 
     }
 

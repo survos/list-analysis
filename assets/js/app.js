@@ -19,4 +19,7 @@ require('bootstrap3');
 require('jquery-ui');
 
 require('jqrangeslider');
+require('@fortawesome/fontawesome-free');
 
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+dom.watch();
