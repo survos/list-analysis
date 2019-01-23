@@ -26,9 +26,6 @@
     "survos/landing-bundle": {
         "version": "dev-master"
     },
-    "symfony/polyfill-intl-idn": {
-        "version": "v1.10.0"
-    },
     "symfony/webpack-encore-bundle": {
         "version": "1.0",
         "recipe": {
@@ -49,5 +46,8 @@
     },
     "willdurand/negotiation": {
         "version": "2.x-dev"
+    },
+    "zendframework/zend-eventmanager": {
+        "version": "3.2.1"
     }
 }
