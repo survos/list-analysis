@@ -15,10 +15,12 @@ easy_admin:
         #              - 'build/js/app.js'
         menu:
         - { label: 'Landing', route: 'landing', icon: home }
+        - { label: 'Pie', route: 'pie', icon: chart }
         - entity: Message
           icon: email
         - entity: Account
         - entity: TimePeriod
+        - entity: Archive
     show:
         max_results: 20
     list:
@@ -29,5 +31,7 @@ easy_admin:
             class: App\Entity\Message
         Account:
             class: App\Entity\Account
+        Archive:
+            class: App\Entity\Archive
         TimePeriod:
             class: App\Entity\TimePeriod

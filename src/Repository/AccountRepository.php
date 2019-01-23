@@ -13,7 +13,7 @@ class AccountRepository extends ServiceEntityRepository
         parent::__construct($registry, Account::class);
     }
 
-    /** @todo: filter by timeframe, loc */
+
     public function findTopAccounts($count = 10)
     {
         return $this->createQueryBuilder('a')

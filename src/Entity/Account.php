@@ -57,6 +57,14 @@ class Account
         return $this->getSenderName() ?: $this->getSender();
     }
 
+    public function getShortName()
+    {
+        $sender = $this->__toString();
+        // get rid of the at whatever
+        $sender = preg_replace('/ at.*$/', '', $sender);
+        return $sender;
+    }
+
     /**
      * @return mixed
      */

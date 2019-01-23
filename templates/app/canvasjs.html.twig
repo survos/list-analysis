@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        #myChart {
+            width: 500px;
+        }
+    </style>
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('canvas') }}
+
+{% endblock %}

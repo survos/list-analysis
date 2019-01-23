@@ -22,8 +22,13 @@ class TimePeriod
     public function __toString()
     {
         return sprintf('%s/%d', $this->getMonthNumber(), $this->getYear());
-        // TODO: Implement __toString() method.
     }
+
+    public function getYearMonthString()
+    {
+        return sprintf('%s-%s', $this->getYear() - 2000, $this->getMonthNumber());
+    }
+
 
 
     /**
@@ -72,6 +77,16 @@ class TimePeriod
      * @ORM\Column(type="string", length=32, nullable=true)
      */
     private $md5;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $filesize;
+
+    /**
+     * @ORM\Column(type="string", length=24, nullable=true)
+     */
+    private $marking;
 
     /**
      * @return mixed
@@ -266,6 +281,30 @@ class TimePeriod
     public function getRouteParams()
     {
         return ['id'=>$this->getId()];
+    }
+
+    public function getFilesize(): ?int
+    {
+        return $this->filesize;
+    }
+
+    public function setFilesize(int $filesize): self
+    {
+        $this->filesize = $filesize;
+
+        return $this;
+    }
+
+    public function getMarking(): ?string
+    {
+        return $this->marking;
+    }
+
+    public function setMarking(string $marking): self
+    {
+        $this->marking = $marking;
+
+        return $this;
     }
 
 

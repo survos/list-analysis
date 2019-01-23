@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Message;
 use App\Entity\TimePeriod;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class MessageRepository extends ServiceEntityRepository
@@ -27,6 +28,36 @@ class MessageRepository extends ServiceEntityRepository
         }
         return $qb
             ->getQuery()->getResult();
+
+    }
+
+    public function getCountsByAccountQueryBuilder($startDate=null, $endDate=null, $maxResults=10): QueryBuilder
+    {
+        dump($startDate);
+        $qb = $this->createQueryBuilder('message')
+            ->join('message.account', 'account');
+
+        $qb
+            ->select('account.id, count(message.id) as cnt')
+            // ->from(Message::class, 'c')
+            ->groupBy('account.id')
+            ->orderBy('cnt', 'DESC')
+        ;
+
+        if ($startDate) {
+            $qb->andWhere('message.time >= :startDate')
+                ->setParameter('startDate', $startDate);
+        }
+
+        if ($endDate) {
+            $qb->andWhere('message.time <= :endDate')
+                ->setParameter('endDate', $endDate);
+
+        }
+
+
+        return $qb;
+
 
     }
 

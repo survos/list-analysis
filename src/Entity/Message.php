@@ -15,6 +15,14 @@ class Message
 {
     /**
      * @ORM\Id
+     * @ORM\Column(type="string", length=255, nullable=false)
+     *   not \GeneratedValue because we get the UUID from the database
+     */
+    private $id;
+
+
+    /**
+     * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
     private $id;
@@ -36,22 +44,11 @@ class Message
     private $timePeriod;
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="string", length=255, nullable=false)
-     */
-    private $id;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Message", inversedBy="replies")
      */
     private $inReplyTo;
 
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-    private $inReplyToMessageId;
-     */
-
+    
     /**
      * @ORM\Column(type="text", nullable=false)
      * @Groups("Default")
@@ -74,6 +71,16 @@ class Message
      * @Groups("Default")
      */
     private $subject;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $rawMessageId;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isLocal;
 
 
     public function __toString()
@@ -102,7 +109,7 @@ class Message
     /**
      * @return mixed
      */
-    public function getTime()
+    public function getTime(): ?\DateTime
     {
         return $this->time;
     }
@@ -111,7 +118,7 @@ class Message
      * @param mixed $time
      * @return Message
      */
-    public function setTime($time)
+    public function setTime(\DateTime $time)
     {
         $this->time = $time;
         return $this;
@@ -294,6 +301,30 @@ class Message
     public function setReplies($replies)
     {
         $this->replies = $replies;
+        return $this;
+    }
+
+    public function getRawMessageId(): ?string
+    {
+        return $this->rawMessageId;
+    }
+
+    public function setRawMessageId(?string $rawMessageId): self
+    {
+        $this->rawMessageId = $rawMessageId;
+
+        return $this;
+    }
+
+    public function getIsLocal(): ?bool
+    {
+        return $this->isLocal;
+    }
+
+    public function setIsLocal(?bool $isLocal): self
+    {
+        $this->isLocal = $isLocal;
+
         return $this;
     }
 

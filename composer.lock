@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7a9a721149502d242264db87b2e8936",
+    "content-hash": "e772ac57fef51e3950788a395bc5e84a",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -530,12 +530,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "0731608045c810f97e93483fdb6cbf43e7b3ba45"
+                "reference": "b90d6324d3056ed89641efe0cfdfb9947b9148a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0731608045c810f97e93483fdb6cbf43e7b3ba45",
-                "reference": "0731608045c810f97e93483fdb6cbf43e7b3ba45",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/b90d6324d3056ed89641efe0cfdfb9947b9148a3",
+                "reference": "b90d6324d3056ed89641efe0cfdfb9947b9148a3",
                 "shasum": ""
             },
             "require": {
@@ -547,7 +547,7 @@
             "require-dev": {
                 "doctrine/coding-standard": "^5.0",
                 "jetbrains/phpstorm-stubs": "^2018.1.2",
-                "phpstan/phpstan": "^0.10.1",
+                "phpstan/phpstan": "^0.11.1",
                 "phpunit/phpunit": "^7.4",
                 "symfony/console": "^2.0.5|^3.0|^4.0",
                 "symfony/phpunit-bridge": "^3.4.5|^4.0.5"
@@ -604,7 +604,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2019-01-06T19:25:53+00:00"
+            "time": "2019-01-21T09:25:32+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -790,12 +790,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "ae4bf490ef70c2dadd84786d24a2c86c7df46b39"
+                "reference": "2f88b7693408c10ec1311b5d996def5bb236bd57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/ae4bf490ef70c2dadd84786d24a2c86c7df46b39",
-                "reference": "ae4bf490ef70c2dadd84786d24a2c86c7df46b39",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/2f88b7693408c10ec1311b5d996def5bb236bd57",
+                "reference": "2f88b7693408c10ec1311b5d996def5bb236bd57",
                 "shasum": ""
             },
             "require": {
@@ -820,7 +820,10 @@
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Bundle\\MigrationsBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -847,7 +850,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2019-01-09T19:07:19+00:00"
+            "time": "2019-01-21T05:31:05+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -1745,12 +1748,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSElasticaBundle.git",
-                "reference": "94b1e60aee7cae923fd073ccb124193ef799737a"
+                "reference": "1718aa74415d2760d9d533391be24e05c741de76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/94b1e60aee7cae923fd073ccb124193ef799737a",
-                "reference": "94b1e60aee7cae923fd073ccb124193ef799737a",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/1718aa74415d2760d9d533391be24e05c741de76",
+                "reference": "1718aa74415d2760d9d533391be24e05c741de76",
                 "shasum": ""
             },
             "require": {
@@ -1824,7 +1827,7 @@
                 "mongodb",
                 "search"
             ],
-            "time": "2019-01-19T18:08:46+00:00"
+            "time": "2019-01-21T12:31:51+00:00"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -3391,12 +3394,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "d71e7f0c9bfe1e0a9a0d20eac2af6dfdaa677e83"
+                "reference": "bb120bb10dd145f686865f434bbba53715f6ca53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d71e7f0c9bfe1e0a9a0d20eac2af6dfdaa677e83",
-                "reference": "d71e7f0c9bfe1e0a9a0d20eac2af6dfdaa677e83",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/bb120bb10dd145f686865f434bbba53715f6ca53",
+                "reference": "bb120bb10dd145f686865f434bbba53715f6ca53",
                 "shasum": ""
             },
             "require": {
@@ -3445,7 +3448,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2019-01-19T14:32:28+00:00"
+            "time": "2019-01-20T16:10:32+00:00"
         },
         {
             "name": "symfony/asset",
@@ -6694,6 +6697,60 @@
             "time": "2019-01-16T20:31:39+00:00"
         },
         {
+            "name": "symfony/webpack-encore-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/webpack-encore-bundle.git",
+                "reference": "9c89795a4577c522101206a1a88272660735257c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/9c89795a4577c522101206a1a88272660735257c",
+                "reference": "9c89795a4577c522101206a1a88272660735257c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/asset": "^3.4 || ^4.0",
+                "symfony/config": "^3.4 || ^4.0",
+                "symfony/contracts": "^1.0",
+                "symfony/dependency-injection": "^3.4 || ^4.0",
+                "symfony/http-kernel": "^3.4 || ^4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.14",
+                "symfony/framework-bundle": "^3.4 || ^4.0",
+                "symfony/phpunit-bridge": "^3.4 || ^4.1",
+                "symfony/twig-bundle": "^3.4 || ^4.0",
+                "twig/twig": "^1.35 || ^2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/webpack-encore",
+                    "url": "https://github.com/symfony/webpack-encore"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\WebpackEncoreBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Integration with your Symfony app & Webpack Encore!",
+            "time": "2019-01-17T02:29:30+00:00"
+        },
+        {
             "name": "symfony/workflow",
             "version": "4.2.x-dev",
             "source": {
@@ -7929,7 +7986,8 @@
         "api-platform/api-pack": 20,
         "cmen/google-charts-bundle": 20,
         "friendsofsymfony/elastica-bundle": 20,
-        "survos/landing-bundle": 20
+        "survos/landing-bundle": 20,
+        "symfony/webpack-encore-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
@@ -7937,6 +7995,7 @@
         "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-pgsql": "*",
         "ext-sqlite3": "*"
     },
     "platform-dev": []

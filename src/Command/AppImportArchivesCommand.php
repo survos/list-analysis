@@ -20,14 +20,28 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AppImportArchivesCommand extends ContainerAwareCommand
+class AppImportArchivesCommand extends Command
 {
+
     protected static $defaultName = 'app:import-archives';
 
     private $accounts;
 
     /** @var ApcuAdapter */
     private $cache;
+
+    private $em;
+
+    private $accountRepo;
+    private $messageRepo;
+
+    public function __construct(EntityManagerInterface $entityManager, ?string $name = null)
+    {
+        parent::__construct($name);
+        $this->em = $entityManager;
+        $this->accountRepo = $entityManager->getRepository(Account::class);
+        $this->messageRepo = $entityManager->getRepository(Message::class);
+    }
 
     protected function configure()
     {
@@ -38,9 +52,70 @@ class AppImportArchivesCommand extends ContainerAwareCommand
         ;
     }
 
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        // use redis?  How essential is this?  Is it just for getting the uuids?
+        try {
+            $provider = new SQLite3Cache(new \SQLite3($fn = './var/cache/data.sqlite'), 'messages');
+        } catch (\Exception $e) {
+            die("Can't open $fn");
+        }
+
+        $this->cache = new DoctrineAdapter($provider);
+
+
+
+        // $this->cache = new ApcuAdapter();
+        $this->cache->clear();
+
+        $this->initAccounts();
+        $io = new SymfonyStyle($input, $output);
+
+        $em = $this->getEntityManager();
+        $em->getConnection()->getConfiguration()->setSQLLogger(null);
+
+        // for each month, starting in Jan, 2006
+        for ($year=2005; $year<=date('Y'); $year++) {
+            for ($month=1; $month<=12; $month++) {
+                $filename = sprintf('../data/%s-%s.txt.gz', $year,
+                    \DateTime::createFromFormat('!m', $month)->format('F'));
+                if (!file_exists($filename)) {
+                    $io->writeln("Skipping $filename");
+                    continue;
+                }
+                $timePeriod = $this->getTimePeriod($year, $month);
+
+                // really parses and imports
+
+                $count = $this->parseFile($filename, $io, $timePeriod);
+
+                // batch update the counts
+                $this->updateCounts();
+
+
+                try {
+                    $this->getEntityManager()->flush();
+                    $this->getEntityManager()->clear();
+
+                    // batch update the counts
+                    $this->updateCounts();
+                    $this->getEntityManager()->flush();
+
+                    $this->initAccounts();
+                } catch (\Exception $e) {
+                    die($e->getMessage() . "\n");
+                }
+                // $this->getEntityManager()->clear(); // reset, too slow otherwise
+                $io->success(sprintf("%d messages in %s, Accounts: %d", $count, $filename, count($this->accounts) ));
+
+                // if ($month == 2) die("Stopped");
+            }
+        }
+    }
+
     private function getEntityManager(): EntityManagerInterface
     {
-        return $this->getContainer()->get('doctrine.orm.default_entity_manager');
+        return $this->em;
     }
 
     private function findOrCreateAccount($from): Account {
@@ -103,49 +178,15 @@ class AppImportArchivesCommand extends ContainerAwareCommand
 
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    private function updateCounts()
     {
-        try {
-            $provider = new SQLite3Cache(new \SQLite3($fn = './var/cache/data.sqlite'), 'messages');
-        } catch (\Exception $e) {
-            die("Can't open $fn");
+        $accountRepo = $this->em->getRepository(Account::class);
+        foreach ($accountRepo->findAll() as $account) {
+            $account->setCount($account->getMessages()->count());
         }
 
-        $this->cache = new DoctrineAdapter($provider);
-
-        // $this->cache = new ApcuAdapter();
-        $this->cache->clear();
-
-        $this->initAccounts();
-        $io = new SymfonyStyle($input, $output);
-
-        $em = $this->getEntityManager();
-        $em->getConnection()->getConfiguration()->setSQLLogger(null);
-
-        // for each month, starting in Jan, 2006
-        for ($year=2005; $year<=date('Y'); $year++) {
-            for ($month=1; $month<=12; $month++) {
-                $filename = sprintf('../data/%s-%s.txt.gz', $year,
-                    \DateTime::createFromFormat('!m', $month)->format('F'));
-                if (!file_exists($filename)) {
-                    $io->writeln("Skipping $filename");
-                    continue;
-                }
-                $timePeriod = $this->getTimePeriod($year, $month);
-                $count = $this->parseFile($filename, $io, $timePeriod);
-                try {
-                    $this->getEntityManager()->flush();
-                    $this->getEntityManager()->clear();
-                    $this->initAccounts();
-                } catch (\Exception $e) {
-                    die($e->getMessage() . "\n");
-                }
-                // $this->getEntityManager()->clear(); // reset, too slow otherwise
-                $io->success(sprintf("%d messages in %s, Accounts: %d", $count, $filename, count($this->accounts) ));
-                // if ($month == 2) die("Stopped");
-            }
-        }
     }
+
 
     private function parseFile($fn, SymfonyStyle $io, TimePeriod $month)
     {
@@ -153,6 +194,7 @@ class AppImportArchivesCommand extends ContainerAwareCommand
         $md5 = md5($data);
 
         if ($month->getMd5() == $md5) {
+            $io->warning("Skipping $month, already loaded.");
             return true; // already loaded...
         }
         $month
@@ -170,12 +212,17 @@ class AppImportArchivesCommand extends ContainerAwareCommand
             $progress->setRedrawFrequency(100);
             foreach ($messages as $message) {
                 $progress->advance();
-                if ($message = $this->importMessage($message, $month)) {
+                if (!$message = $this->importMessage($message, $month)) {
+                    $io->error("Unable to import message " . $message->getId());
+                    /*
+                     *
+                     * else, but whey do we need to cache these?  Can/should we use redis?
                     $messageItem = $this->cache->getItem($message->getId());
                     if (!$messageItem->isHit()) {
                         $messageItem->set(0);
                         $this->cache->save($messageItem);
                     }
+                    */
                     // $month->addMessage($message);
                     // $message->setTimePeriod($month);
                 }
@@ -194,7 +241,8 @@ class AppImportArchivesCommand extends ContainerAwareCommand
         }
 
         $em = $this->getEntityManager();
-        $messageRepository = $em->getRepository(Message::class);
+
+        $messageRepository = $this->messageRepo;
 
         // dump($message);
 
@@ -236,7 +284,8 @@ class AppImportArchivesCommand extends ContainerAwareCommand
             die($e->getMessage());
         }
         // now insert/update the record
-        $messageId = $this->cleanMessageId($header['Message-ID']);
+        $rawMessageId = $header['Message-ID'];
+        $messageId = $this->cleanMessageId($rawMessageId); // md5 version
 
         if (!$message = $messageRepository->find($messageId) ) {
             $subject = $header['Subject'];
@@ -255,8 +304,10 @@ class AppImportArchivesCommand extends ContainerAwareCommand
             // get the account
             $from = $header['From'];
             $account = $this->findOrCreateAccount($from);
+            echo $rawMessageId;
             // dump(array_keys($this->accounts));
             $message = (new Message())
+                ->setRawMessageId($rawMessageId)
                 ->setId($messageId)
                 ->setTimePeriod($timePeriod)
                 ->setAccount($account)

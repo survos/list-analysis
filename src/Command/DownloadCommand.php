@@ -15,7 +15,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class DownloadCommand extends ContainerAwareCommand
+class DownloadCommand extends Command
 {
     protected static $defaultName = 'app:download';
 
@@ -28,6 +28,7 @@ class DownloadCommand extends ContainerAwareCommand
             ->setDescription('Add a short description for your command')
             ->addArgument('filename', InputArgument::OPTIONAL, 'filename, e.g. 2007-January.txt.gz' )
             ->addOption('refresh', null, InputOption::VALUE_NONE, 'Refresh Monthly List')
+            ->addOption('purge', null, InputOption::VALUE_NONE, 'Purge before load')
         ;
     }
 
@@ -56,8 +57,6 @@ class DownloadCommand extends ContainerAwareCommand
 // submits the given form
         $crawler = $client->submit($form);
 
-
-
         /*
 
         $crawler = $client->request('GET', 'http://list.rappnet.org/mailman/private/rappnet_list.rappnet.org/2018-September.txt.gz');
@@ -71,12 +70,22 @@ class DownloadCommand extends ContainerAwareCommand
         $em = $this->em; // $this->getContainer()->get('doctrine');
         $repo = $em->getRepository(Archive::class);
 
+        if ($input->getOption('purge'))
+        {
+            array_map(function (Archive $a) {
+                $this->em->remove($a);
+            }, $repo->findAll());
+            $this->em->flush();
+        }
 
         if ($input->getOption('refresh'))
         {
+
             if (preg_match_all('/href="(.*?\.gz)"/', $text, $mm))
             {
-                foreach ($mm[1] as $filename) {
+                $files = array_reverse($mm[1]);
+                foreach ($files as $filename) {
+                    $io->text("Checking " . $filename);
                     if (!$archive = $repo->findOneBy(['filename' => $filename])) {
                         $archive = (new Archive())
                             ->setFilename($filename);
@@ -106,7 +115,7 @@ class DownloadCommand extends ContainerAwareCommand
         }
 
         // 'filename' => '2006-April.txt.gz'
-        foreach ($repo->findBy($filter, ['id' => 'DESC']) as $archive) {
+        foreach ($repo->findBy($filter, ['id' => 'ASC']) as $archive) {
             $url = $base . $archive->getFilename();
             $savedFile = "../data/" . $archive->getFilename();
 
@@ -115,6 +124,13 @@ class DownloadCommand extends ContainerAwareCommand
                 file_put_contents($savedFile, $client->getResponse()->getContent());
                 $io->writeln(sprintf("%s: %s bytes", $savedFile, filesize($savedFile)));
             }
+
+            $archive
+                ->setZippedFileSize(filesize($savedFile)); // could also check the content size
+            ;
+
+
+
 
             /*
             $content = file_get_contents($savedFile);
@@ -159,6 +175,9 @@ class DownloadCommand extends ContainerAwareCommand
         // dump the results
         // dump($client->getResponse());
 
+        $em->flush();
         $io->success('Finished download.');
+
     }
+
 }

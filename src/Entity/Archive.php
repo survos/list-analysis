@@ -42,9 +42,14 @@ class Archive
     private $lineCount;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="archive", orphanRemoval=true)
+     * @ ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="archive", orphanRemoval=true)
      */
     private $messages;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $zippedFileSize;
 
     public function __construct()
     {
@@ -132,6 +137,18 @@ class Archive
                 $message->setArchive(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getZippedFileSize(): ?int
+    {
+        return $this->zippedFileSize;
+    }
+
+    public function setZippedFileSize(?int $zippedFileSize): self
+    {
+        $this->zippedFileSize = $zippedFileSize;
 
         return $this;
     }
