@@ -100,6 +100,7 @@ class AppController extends AbstractController
     private function getMonthlyChart(TimePeriodRepository $timePeriodRepository)
     {
         $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
+        $yearArray = [];
 
         $x = [['Period', 'Calculated']];
         /** @var TimePeriod $period */
@@ -242,7 +243,7 @@ class AppController extends AbstractController
             'accountLimit' => 3,
             // 'startDate' => '10/16/2013',
             'startDate' => new \DateTime('2006-01-01'), // $oldestMessage->getTime(),
-            'endDate' => $newestMessage->getTime()
+            'endDate' => $newestMessage ? $newestMessage->getTime() : null
         ];
 
         $searchForm = $this->createForm(MessageSearchFormType::class, $defaults);
