@@ -83,6 +83,8 @@ class AppImportArchivesCommand extends Command
                     $io->writeln("Skipping $filename");
                     continue;
                 }
+
+                // really should compare the filesize, if it's the same that's loaded
                 $timePeriod = $this->getTimePeriod($year, $month);
 
                 // really parses and imports
@@ -90,7 +92,7 @@ class AppImportArchivesCommand extends Command
                 $count = $this->parseFile($filename, $io, $timePeriod);
 
                 // batch update the counts
-                $this->updateCounts();
+                // $this->updateCounts();
 
 
                 try {
@@ -98,7 +100,7 @@ class AppImportArchivesCommand extends Command
                     $this->getEntityManager()->clear();
 
                     // batch update the counts
-                    $this->updateCounts();
+                    // $this->updateCounts();
                     $this->getEntityManager()->flush();
 
                     $this->initAccounts();
@@ -111,6 +113,11 @@ class AppImportArchivesCommand extends Command
                 // if ($month == 2) die("Stopped");
             }
         }
+
+        // at the very end, since this is pretty slow.
+        $this->updateCounts();
+        $this->getEntityManager()->flush();
+
     }
 
     private function getEntityManager(): EntityManagerInterface
@@ -190,6 +197,7 @@ class AppImportArchivesCommand extends Command
 
     private function parseFile($fn, SymfonyStyle $io, TimePeriod $month)
     {
+        $io->comment("Loading $fn");
         $data = file_get_contents($fn);
         $md5 = md5($data);
 
