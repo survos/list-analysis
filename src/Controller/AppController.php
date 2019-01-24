@@ -242,7 +242,7 @@ class AppController extends AbstractController
 
 
         $defaults = [
-            'accountLimit' => 3,
+            'accountLimit' => 10,
             // 'startDate' => '10/16/2013',
             'startDate' => new \DateTime('2006-01-01'), // $oldestMessage->getTime(),
             'endDate' => $newestMessage ? $newestMessage->getTime() : null
