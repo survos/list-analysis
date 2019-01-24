@@ -311,7 +311,7 @@ class Message
 
     public function setRawMessageId(?string $rawMessageId): self
     {
-        $this->rawMessageId = $rawMessageId;
+        $this->rawMessageId = substr($rawMessageId, 0, 255);
 
         return $this;
     }
