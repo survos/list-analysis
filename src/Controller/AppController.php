@@ -71,12 +71,13 @@ class AppController extends AbstractController
     private function getMonthlyChartData()
     {
 
-        $x = [];
+        $y = $m = [];
         /** @var TimePeriod $period */
         foreach ($this->timePeriodRepo->findAll() as $period) {
             if (empty($yearArray[$period->getYear()])) {
                 $yearArray[$period->getYear()] = 0;
             }
+            array_push($m, [$period->__toString(), $period->getImportedMessageCount()]);
             $yearArray[$period->getYear()] += $period->getImportedMessageCount();
         }
 
@@ -84,7 +85,7 @@ class AppController extends AbstractController
             array_push($x, [$year, $yearData]);
         }
 
-        return $x;
+        return $m;
     }
 
     /**
@@ -102,29 +103,30 @@ class AppController extends AbstractController
         $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\ColumnChart();
         $yearArray = [];
 
-        $x = [['Period', 'Calculated']];
+        $x = [['Period', '# of Messages']];
         /** @var TimePeriod $period */
         foreach ($timePeriodRepository->findAll() as $period) {
             if (empty($yearArray[$period->getYear()])) {
                 $yearArray[$period->getYear()] = 0;
             }
+            array_push($x, [$period->__toString(), $period->getImportedMessageCount()]);
             $yearArray[$period->getYear()] += $period->getImportedMessageCount();
         }
 
         foreach ($yearArray as $year => $yearData) {
-            array_push($x, [$year, $yearData]);
+            // array_push($x, [$year, $yearData]);
         }
 
         // dump($x); die();
         $chart->getData()->setArrayToDataTable($x);
 
         $chart->getOptions()->getChart()
-            ->setTitle('Rappnet Messages')
-            ->setSubtitle('Local and Total: 2005-2019');
+            ->setTitle('Rappnet Messages, By Month')
+            ->setSubtitle('2006-2019');
         $chart->getOptions()
             ->setBars('vertical')
             ->setHeight(300)
-            ->setWidth(800)
+            // ->setWidth(800)
             ->setColors(['#1b9e77', '#d95f02', '#7570b3']);
         $chart
             ->getOptions()->getHAxis()

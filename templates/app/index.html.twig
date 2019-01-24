@@ -42,15 +42,14 @@
         <div class="col-md-9">
         </div>
         <div class="col-md-3">
-            What's here?
             <div id="column_chartxx"></div>
         </div>
     </div>
 
 <div class="row">
     <div class="col-md-12">
+        <div id="column_chart" ></div>
     {% if app.environment == 'dev' %}
-    <div id="column_chart" ></div>
         <a id="url_link" target="_blank" href="{{ url }}">
             <i class="fa fa-bug">Debug</i>
         </a><br />

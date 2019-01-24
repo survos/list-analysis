@@ -34,8 +34,8 @@ class MessageSearchFormType extends AbstractType
                     [
                         'min' => 1,
                         'max' => 30,
-                        'class' => 'form-control input-sm col-md-2 ',
-                        'width' => '60px'
+                        // 'class' => 'form-control input-sm col-md-2 ',
+                        // 'width' => '60px'
                     ]
 
             ])
