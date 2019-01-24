@@ -75,7 +75,7 @@ class AppImportArchivesCommand extends Command
         $em->getConnection()->getConfiguration()->setSQLLogger(null);
 
         // for each month, starting in Jan, 2006
-        for ($year=2005; $year<=date('Y'); $year++) {
+        for ($year=2006; $year<=date('Y'); $year++) {
             for ($month=1; $month<=12; $month++) {
                 $filename = sprintf('../data/%s-%s.txt.gz', $year,
                     \DateTime::createFromFormat('!m', $month)->format('F'));
@@ -234,6 +234,7 @@ class AppImportArchivesCommand extends Command
         }
     }
 
+    /* why isn't this the in service?? */
     private function importMessage($message, TimePeriod $timePeriod): ?Message {
         if (empty($message))
         {
@@ -304,7 +305,6 @@ class AppImportArchivesCommand extends Command
             // get the account
             $from = $header['From'];
             $account = $this->findOrCreateAccount($from);
-            echo $rawMessageId;
             // dump(array_keys($this->accounts));
             $message = (new Message())
                 ->setRawMessageId($rawMessageId)
@@ -314,7 +314,8 @@ class AppImportArchivesCommand extends Command
                 ->setFromText($from)
                 ->setSubject($subject)
                 ->setTime($sendTime)
-                ->setBody(join("\n", $lines)) // because the header has already been read, rawBody
+                ->setBody('removed for now...')
+                // ->setBody(join("\n", $lines)) // because the header has already been read, rawBody
                 // ->setMessageId($messageId)
                 ->setInReplyToMessageId($this->cleanMessageId($header['In-Reply-To']))
             ;

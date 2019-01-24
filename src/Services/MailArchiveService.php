@@ -47,7 +47,7 @@ class MailArchiveService
         return $this;
     }
 
-    public function import()
+    private function import()
     {
         $archive = $this->archive;
         $body = $this->lines[0]; // first one is a new message
