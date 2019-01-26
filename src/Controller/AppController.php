@@ -3,20 +3,26 @@
 namespace App\Controller;
 
 use App\Entity\Account;
+use App\Entity\Invitation;
 use App\Entity\Message;
 use App\Entity\TimePeriod;
+use App\Form\InvitationFormType;
 use App\Form\MessageSearchFormType;
 use App\Repository\AccountRepository;
 use App\Repository\MessageRepository;
 use App\Repository\TimePeriodRepository;
+use App\Services\InvitationService;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Doctrine\ORM\EntityManagerInterface;
 use Survos\LandingBundle\LandingService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 class AppController extends AbstractController
 {
@@ -225,12 +231,95 @@ class AppController extends AbstractController
                 'accountLimit' => $request->get('accountLimit', 8)
             ]
         ));
-
-
     }
 
     /**
-     * @Route("/", name="pie")
+     * @Route("/x", name="request_invitation")
+     */
+    public function invitation(Request $request, EntityManagerInterface $em, InvitationService $invitationService, \Swift_Mailer $mailer, RouterInterface $router)
+    {
+        $defaults = [
+            'email' => sprintf('tacman+%s@gmail.com', time())
+        ];
+
+        $invitation = null;
+
+        $builder = $this->createFormBuilder($defaults);
+
+        $builder->add('email', EmailType::class, [
+
+        ])
+            ->add('submit', SubmitType::class, [
+                'label' => "Request Invitation"
+            ]);
+
+        $form = $builder->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $email = $form->get('email')->getData();
+            // check if it's in the database already
+            if (!$invitation = $em->getRepository(Invitation::class)->findOneBy(['email' => $email])) {
+                $invitation = $invitationService->inviteUser(['email' => $email]);
+                // $em->persist($invitation);
+                $em->flush();
+
+                if ($invitation && $email) {
+                    $ic = $invitation->getCode();
+                    $template = 'email/subscriberInvitation.html.twig';
+                    $link = $router->generate('fos_user_registration_register', ['ic' => $invitation->getCode()]);
+
+                    try {
+                        $body = $this->renderView($template, ['link' => $link, 'ic' => $ic]);
+                    } catch (\Exception $e) {
+                        throw new \Exception($e->getMessage());
+                    }
+
+                    try {
+                        $message = (new \Swift_Message("Invitation to join"))
+                            ->setFrom(getenv('mailer_user'))
+                            ->setTo($email)
+                            ->setBody($body, 'text/html'
+                            )/*
+                         * If you also want to include a plaintext version of the message
+                        ->addPart(
+                            $this->renderView(
+                                'emails/registration.txt.twig',
+                                ['name' => $name]
+                            ),
+                            'text/plain'
+                        )
+                        */
+                        ;
+
+                        $sent = $mailer->send($message);
+
+                        $this->addFlash('success', "An invitation has been sent to " . $invitation->getEmail());
+                    } catch (\Exception $e) {
+                        $this->addFlash('error', "Error sending to " . $invitation->getEmail());
+                        $this->addFlash('error', $e->getMessage());
+
+                    }
+
+
+                    return $this->redirectToRoute('request_invitation');
+                }
+            }
+        }
+
+        // $form = $this->createForm(InvitationFormType::class); // , $invitation);
+
+        return $this->render('app/landing.html.twig', [
+            'form' => $form->createView(),
+            'invitation' => $invitation
+        ]);
+
+    }
+
+
+    /**
+     * @Route("/pie", name="pie")
      */
     public function piechart(Request $request, AccountRepository $repo, MessageRepository $messageRepository, TimePeriodRepository $timePeriodRepository)
     {

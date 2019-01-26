@@ -41,7 +41,9 @@ class MailArchiveService
         $this->currentLine = 1;
         $this->messageCount = 0;
         $this->archive = $archive;
-        $archive->setLineCount(count($this->lines));
+        $archive
+            ->setLineCount(count($this->lines));
+
         $this->em->flush();
 
         return $this;

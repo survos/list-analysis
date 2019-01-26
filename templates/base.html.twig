@@ -7,6 +7,14 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% block flashMessages %}
+            {# pass a string argument to get only the messages of that type #}
+            {% for message in app.session.flashBag.all %}
+                <div class="alert alert-notice">
+                    {{ message|join('<br />') }}
+                </div>
+            {% endfor %}
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('build/app.js') }}"></script>

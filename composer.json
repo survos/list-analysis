@@ -11,11 +11,13 @@
         "ext-sqlite3": "*",
         "api-platform/api-pack": "dev-master",
         "cmen/google-charts-bundle": "dev-master",
+        "cspoo/swiftmailer-mailgun-bundle": "^1.2",
         "easycorp/easyadmin-bundle": "*",
         "fabpot/goutte": "^3.2",
         "friendsofsymfony/elastica-bundle": "^5.1@dev",
-        "friendsofsymfony/user-bundle": "^2.1",
+        "friendsofsymfony/user-bundle": "~2.0",
         "knplabs/knp-menu-bundle": "^2.2",
+        "php-http/guzzle6-adapter": "^1",
         "sensio/framework-extra-bundle": "^5.1",
         "sentry/sentry-symfony": "^2.2",
         "survos/landing-bundle": "*@dev",
@@ -40,7 +42,7 @@
         "twbs/bootstrap": "^4.1"
     },
     "require-dev": {
-        "symfony/debug-pack": "*",
+        "symfony/debug-pack": "^1.0",
         "symfony/dotenv": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",

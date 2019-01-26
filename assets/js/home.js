@@ -26,7 +26,7 @@ $(function () {
         options = {
             // title: 'Rappnet Posters  ',
             // is3D: true,
-            height: 600,
+            height: 800,
             reverseCategories: true,
             pieStartAngle: 180,
             // chartArea:{left:20,top:0,width:'70%',height:'600'},

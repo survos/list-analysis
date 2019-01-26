@@ -6,8 +6,8 @@ fos_user:
 #        user_manager: App\Services\UserManager
     firewall_name: secured_area
     from_email:
-        sender_name: Tac # "%mail.sender_name%"
-        address: "tacman@gmail.com" # "%mail.sender_address%"
+        address: "%env(mailer_user)%"
+        sender_name: "%env(mailer_user)%"
     registration:
         form:
             type: App\Form\RegistrationFormType

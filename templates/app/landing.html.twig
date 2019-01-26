@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RappNet{% endblock %}
+
+{% block body %}
+
+    <h3>Request Invitation</h3>
+
+{{ form(form) }}
+
+    {% if invitation %}
+        {{ invitation.email }} already has an invitation, would you like to resend it?
+    {% endif %}
+
+    <a href="{{ path('pie') }}">Pie Chart Tool</a>
+{% endblock %}
