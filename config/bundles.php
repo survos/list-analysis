@@ -24,5 +24,5 @@ return [
     CMEN\GoogleChartsBundle\CMENGoogleChartsBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Sentry\SentryBundle\SentryBundle::class => ['all' => true],
-    OG\SendGridBundle\OGSendGridBundle::class => ['all' => true],
+    ExpertCoder\Swiftmailer\SendGridBundle\ExpertCoderSwiftmailerSendGridBundle::class => ['all' => true],
 ];

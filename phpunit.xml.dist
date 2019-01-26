@@ -30,6 +30,10 @@
         <!-- ###+ sentry/sentry-symfony ### -->
         <env name="SENTRY_DSN" value=""/>
         <!-- ###- sentry/sentry-symfony ### -->
+
+        <!-- ###+ expertcoder/swiftmailer-send-grid-bundle ### -->
+        <env name="SENDGRID_API_KEY" value="PleaseEnterYourKey"/>
+        <!-- ###- expertcoder/swiftmailer-send-grid-bundle ### -->
     </php>
 
     <testsuites>

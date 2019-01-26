@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08a61081a7b0a023c93e2b6894fb3b15",
+    "content-hash": "c7df3f96d2d66f8c3210b68fdad470f0",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -1597,6 +1597,60 @@
             "time": "2019-01-08T18:53:46+00:00"
         },
         {
+            "name": "expertcoder/swiftmailer-send-grid-bundle",
+            "version": "2.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/expertcoder/SwiftmailerSendGridBundle.git",
+                "reference": "a49bfbf01ec28c9bdc4f9a0797083cbb7ed98f5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/expertcoder/SwiftmailerSendGridBundle/zipball/a49bfbf01ec28c9bdc4f9a0797083cbb7ed98f5b",
+                "reference": "a49bfbf01ec28c9bdc4f9a0797083cbb7ed98f5b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "sendgrid/php-http-client": "~3.9.4",
+                "sendgrid/sendgrid": "^7.0",
+                "symfony/framework-bundle": "~2.7|~3.3|~4.0",
+                "symfony/swiftmailer-bundle": "~3.2",
+                "symfony/yaml": "~2.7|~3.3|~4.0"
+            },
+            "require-dev": {
+                "nyholm/symfony-bundle-test": "^1.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ExpertCoder\\Swiftmailer\\SendGridBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samual Anthony",
+                    "email": "sam@expertcoder.io"
+                },
+                {
+                    "name": "Maxime Hermouet",
+                    "email": "moux2003@hotmail.com"
+                }
+            ],
+            "description": "Swiftmailer Transport and Symfony bundle for Sendgrid",
+            "homepage": "https://github.com/expertcoder/SwiftmailerSendGridBundle",
+            "time": "2018-10-22T09:59:33+00:00"
+        },
+        {
             "name": "fabpot/goutte",
             "version": "v3.2.3",
             "source": {
@@ -2630,53 +2684,6 @@
                 "service proxies"
             ],
             "time": "2018-09-27T13:45:01+00:00"
-        },
-        {
-            "name": "oskargunther/sendgrid-bundle",
-            "version": "1.5.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/oskargunther/sendgrid-bundle.git",
-                "reference": "69c2046f5ab95a884f4f34d7b80b8364cf6b2e05"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/oskargunther/sendgrid-bundle/zipball/69c2046f5ab95a884f4f34d7b80b8364cf6b2e05",
-                "reference": "69c2046f5ab95a884f4f34d7b80b8364cf6b2e05",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1",
-                "sendgrid/sendgrid": "~7",
-                "symfony/config": ">=2.8.30",
-                "symfony/dependency-injection": ">=2.8.30",
-                "symfony/event-dispatcher": ">=2.8.30",
-                "symfony/http-foundation": ">=2.8.30",
-                "symfony/var-dumper": ">=2.8.30",
-                "symfony/yaml": ">=2.8.30"
-            },
-            "require-dev": {
-                "symfony/framework-bundle": ">=2.8.30",
-                "symfony/profiler-pack": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "OG\\SendGridBundle\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oskar Gunther",
-                    "email": "oskar.gunther94@gmail.com"
-                }
-            ],
-            "description": "Integrates sendgrid-php with Symfony >=2.8 with extra message profiling",
-            "time": "2018-09-21T16:43:46+00:00"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -5532,61 +5539,6 @@
             "time": "2018-09-21T13:07:52+00:00"
         },
         {
-            "name": "symfony/polyfill-php72",
-            "version": "v1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "9050816e2ca34a8e916c3a0ae8b9c2fccf68b631"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/9050816e2ca34a8e916c3a0ae8b9c2fccf68b631",
-                "reference": "9050816e2ca34a8e916c3a0ae8b9c2fccf68b631",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php72\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2018-09-21T13:07:52+00:00"
-        },
-        {
             "name": "symfony/process",
             "version": "v4.2.2",
             "source": {
@@ -6794,82 +6746,6 @@
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
             "time": "2019-01-06T14:13:54+00:00"
-        },
-        {
-            "name": "symfony/var-dumper",
-            "version": "v4.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "85bde661b178173d85c6f11ea9d03b61d1212bb2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/85bde661b178173d85c6f11ea9d03b61d1212bb2",
-                "reference": "85bde661b178173d85c6f11ea9d03b61d1212bb2",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "symfony/polyfill-mbstring": "~1.0",
-                "symfony/polyfill-php72": "~1.5"
-            },
-            "conflict": {
-                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
-                "symfony/console": "<3.4"
-            },
-            "require-dev": {
-                "ext-iconv": "*",
-                "symfony/console": "~3.4|~4.0",
-                "symfony/process": "~3.4|~4.0",
-                "twig/twig": "~1.34|~2.4"
-            },
-            "suggest": {
-                "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
-                "ext-intl": "To show region name in time zone dump",
-                "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
-            },
-            "bin": [
-                "Resources/bin/var-dump-server"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.2-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "Resources/functions/dump.php"
-                ],
-                "psr-4": {
-                    "Symfony\\Component\\VarDumper\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony mechanism for exploring and dumping PHP variables",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "debug",
-                "dump"
-            ],
-            "time": "2019-01-03T09:07:35+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -8083,6 +7959,61 @@
             "time": "2019-01-03T09:07:35+00:00"
         },
         {
+            "name": "symfony/polyfill-php72",
+            "version": "v1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php72.git",
+                "reference": "9050816e2ca34a8e916c3a0ae8b9c2fccf68b631"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/9050816e2ca34a8e916c3a0ae8b9c2fccf68b631",
+                "reference": "9050816e2ca34a8e916c3a0ae8b9c2fccf68b631",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php72\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2018-09-21T13:07:52+00:00"
+        },
+        {
             "name": "symfony/profiler-pack",
             "version": "v1.0.4",
             "source": {
@@ -8138,6 +8069,82 @@
             ],
             "description": "A pack for functional and end-to-end testing within a Symfony app",
             "time": "2018-12-10T12:13:08+00:00"
+        },
+        {
+            "name": "symfony/var-dumper",
+            "version": "v4.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/var-dumper.git",
+                "reference": "85bde661b178173d85c6f11ea9d03b61d1212bb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/85bde661b178173d85c6f11ea9d03b61d1212bb2",
+                "reference": "85bde661b178173d85c6f11ea9d03b61d1212bb2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-mbstring": "~1.0",
+                "symfony/polyfill-php72": "~1.5"
+            },
+            "conflict": {
+                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
+                "symfony/console": "<3.4"
+            },
+            "require-dev": {
+                "ext-iconv": "*",
+                "symfony/console": "~3.4|~4.0",
+                "symfony/process": "~3.4|~4.0",
+                "twig/twig": "~1.34|~2.4"
+            },
+            "suggest": {
+                "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
+                "ext-intl": "To show region name in time zone dump",
+                "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
+            },
+            "bin": [
+                "Resources/bin/var-dump-server"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Resources/functions/dump.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Component\\VarDumper\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony mechanism for exploring and dumping PHP variables",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "debug",
+                "dump"
+            ],
+            "time": "2019-01-03T09:07:35+00:00"
         },
         {
             "name": "symfony/web-profiler-bundle",
