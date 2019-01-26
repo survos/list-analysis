@@ -1,0 +1,3 @@
+og_send_grid:
+  api_key: '%env(SENDGRID_API_KEY)%'
+  disable_delivery: false # default false

@@ -1,4 +1,4 @@
 swiftmailer:
 #    url: '%env(MAILER_URL)%'
-    transport: "mailgun"
+    transport: "og_send_grid.provider"
     spool: { type: 'memory' }
