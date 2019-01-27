@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 class AppController extends AbstractController
@@ -268,10 +269,13 @@ class AppController extends AbstractController
                 if ($invitation && $email) {
                     $ic = $invitation->getCode();
                     $template = 'email/subscriberInvitation.html.twig';
-                    $link = $router->generate('fos_user_registration_register', ['ic' => $invitation->getCode()]);
+                    $link = $router->generate('fos_user_registration_register', ['ic' => $invitation->getCode()], UrlGeneratorInterface::ABSOLUTE_URL );
 
                     try {
-                        $body = $this->renderView($template, ['link' => $link, 'ic' => $ic]);
+                        $body = $this->renderView($template, [
+                            'email' => $email,
+                            'link' => $link,
+                            'ic' => $ic]);
                     } catch (\Exception $e) {
                         throw new \Exception($e->getMessage());
                     }
@@ -293,9 +297,13 @@ class AppController extends AbstractController
                         */
                         ;
 
-                        $sent = $mailer->send($message);
+                        $sent = $mailer->send($message, $failed);
+                        if (empty($failed)) {
+                            $this->addFlash('success', "An invitation has been sent to " . $invitation->getEmail());
+                        } else {
+                            $this->addFlash('error', "Send Error: " . $invitation->getEmail());
+                        }
 
-                        $this->addFlash('success', "An invitation has been sent to " . $invitation->getEmail());
                     } catch (\Exception $e) {
                         $this->addFlash('error', "Error sending to " . $invitation->getEmail());
                         $this->addFlash('error', $e->getMessage());
