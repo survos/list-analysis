@@ -21,6 +21,7 @@ Encore
     .addEntry('home', './assets/js/home.js')
     .addEntry('chart', './assets/js/chart.js')
     .addEntry('canvas', './assets/js/canvas.js')
+    .addEntry('download', './assets/js/download.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 

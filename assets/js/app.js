@@ -23,3 +23,12 @@ require('@fortawesome/fontawesome-free');
 
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
+
+try {
+    // for Node.js
+    var autobahn = require('autobahn');
+} catch (e) {
+    // for browsers (where AutobahnJS is available globally)
+}
+
+

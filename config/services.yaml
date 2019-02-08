@@ -32,6 +32,11 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    #    Thruway\Peer\ClientInterface:
+
+    Voryx\ThruwayBundle\Client\ClientManager:
+        alias: thruway.client
+
     xxsurvos.landing_menu_builder:
         class: Survos\LandingBundle\Menu\LandingMenuBuilder
         arguments: ["@knp_menu.factory"]

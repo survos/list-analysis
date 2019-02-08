@@ -3,6 +3,7 @@
   "build/app.js": "/build/app.js",
   "build/canvas.js": "/build/canvas.js",
   "build/chart.js": "/build/chart.js",
+  "build/download.js": "/build/download.js",
   "build/home.js": "/build/home.js",
   "build/runtime.js": "/build/runtime.js"
 }

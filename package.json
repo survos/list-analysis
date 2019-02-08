@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "autobahn": "^18.10.2",
     "bootstrap3": "^3.3.5",
     "canvasjs": "^1.8.1",
     "jqrangeslider": "^5.7.5",
@@ -14,7 +15,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.6.3",
     "@symfony/webpack-encore": "^0.22.4"
   },
-
   "scripts": {
     "dev-server": "encore dev-server",
     "dev": "encore dev",

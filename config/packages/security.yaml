@@ -12,6 +12,8 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        thruway:
+            security: false
         main:
             pattern: ^/
             user_checker: security.user_checker

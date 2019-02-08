@@ -14,13 +14,19 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Thruway\Peer\ClientInterface;
+use Voryx\ThruwayBundle\Client\ClientManager;
 
 class DownloadCommand extends Command
 {
+
     protected static $defaultName = 'app:download';
 
     private $em;
     private $archiveService;
+    private $thruwayClient;
 
     protected function configure()
     {
@@ -32,17 +38,32 @@ class DownloadCommand extends Command
         ;
     }
 
-    public function __construct(EntityManagerInterface $entityManager, MailArchiveService $mailArchiveService, $name = null)
+    public function __construct(EntityManagerInterface $entityManager,
+                                ClientManager $thruwayClient,
+                                MailArchiveService $mailArchiveService, $name = null)
     {
         parent::__construct($name);
         $this->em = $entityManager;
         $this->archiveService = $mailArchiveService;
+        $this->thruwayClient = $thruwayClient;
+    }
+
+    public function publish($value)
+    {
+        print "Publishing!...\n";
+        // $client = $this->container->get('thruway.client');
+        $client = $this->thruwayClient; //
+
+
+        $client->publish("download.rappnew", [$value]);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
         $base = 'http://list.rappnet.org/mailman/private/rappnet_list.rappnet.org/';
+
+
 
 // makes a real request to an external site
         $client = new Client();
@@ -129,6 +150,9 @@ class DownloadCommand extends Command
                 ->setZippedFileSize(filesize($savedFile)); // could also check the content size
             ;
 
+
+            $this->publish($savedFile);
+            sleep(10);
 
 
 

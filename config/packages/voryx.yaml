@@ -1,0 +1,17 @@
+voryx_thruway:
+  realm: 'realm1'
+  url: 'ws://127.0.0.1:8081' #The url that the clients will use to connect to the router
+  router:
+    ip: 127.0.0.1  # the ip that the router should start on
+    port: 8080  # public facing port.  If authentication is enabled, this port will be protected
+    trusted_port: 8081 # Bypasses all authentication.  Use this for trusted clients.
+    authentication: false # true will load the AuthenticationManager
+  user_provider: 'fos_user.user_provider.username'
+  enable_logging: true
+  locations:
+    bundles: ["AppBundle"]
+    #        files:
+    #            - "Acme\\DemoBundle\\Controller\\DemoController"
+    #
+    # For symfony 4, this bundle will automatically scan for annotated worker files in the src/Controller folder
+

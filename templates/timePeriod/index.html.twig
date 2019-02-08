@@ -2,6 +2,12 @@
 
 {% block body %}
 
+    <ul id="download_log">
+        <li>ONE</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+
     <table class="table">
         <tbody>
         {% for period in periods%}
@@ -14,4 +20,9 @@
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('download') }}
 {% endblock %}

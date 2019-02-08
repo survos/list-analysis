@@ -24,6 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Voryx\ThruwayBundle\Annotation\Register;
 
 class AppController extends AbstractController
 {
@@ -40,12 +41,37 @@ class AppController extends AbstractController
     }
 
     /**
+     * @Register("com.example.add")
+     */
+    public function addAction($num1, $num2)
+    {
+        return $num1 + $num2;
+    }
+
+    /**
+     * @Register("com.example.multiply")
+     */
+    public function multiply($num1, $num2)
+    {
+        return $num1 * $num2;
+    }
+
+    /**
      * @Route("/landing", name="landing")
      */
     public function index(LandingService $landingService)
     {
         return $this->render('test_menu_index.html.twig', [
             'entities' => $landingService->getEntities()
+        ]);
+    }
+
+    /**
+     * @Route("/archives", name="archives")
+     */
+    public function archives(LandingService $landingService)
+    {
+        return $this->render('archives.html.twig', [
         ]);
     }
 

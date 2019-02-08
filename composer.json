@@ -38,7 +38,8 @@
         "symfony/web-link": "*",
         "symfony/webpack-encore-bundle": "dev-master",
         "symfony/yaml": "*",
-        "twbs/bootstrap": "^4.1"
+        "twbs/bootstrap": "^4.1",
+        "voryx/thruway-bundle": "^0.4.1"
     },
     "require-dev": {
         "symfony/debug-pack": "^1.0",

@@ -11,11 +11,17 @@
             "ref": "18727d8f229306860b46955f438e1897421da689"
         }
     },
+    "cboden/ratchet": {
+        "version": "v0.4.1"
+    },
     "cmen/google-charts-bundle": {
         "version": "dev-master"
     },
     "elasticsearch/elasticsearch": {
         "version": "v6.1.0"
+    },
+    "evenement/evenement": {
+        "version": "v3.0.1"
     },
     "expertcoder/swiftmailer-send-grid-bundle": {
         "version": "2.0",
@@ -56,8 +62,35 @@
     "ralouphie/getallheaders": {
         "version": "2.0.5"
     },
+    "ratchet/pawl": {
+        "version": "v0.3.4"
+    },
+    "ratchet/rfc6455": {
+        "version": "0.2.4"
+    },
+    "react/cache": {
+        "version": "v0.5.0"
+    },
+    "react/child-process": {
+        "version": "v0.6.0"
+    },
+    "react/dns": {
+        "version": "v0.4.16"
+    },
+    "react/event-loop": {
+        "version": "v1.1.0"
+    },
     "react/promise": {
         "version": "v2.7.1"
+    },
+    "react/promise-timer": {
+        "version": "v1.5.0"
+    },
+    "react/socket": {
+        "version": "v1.2.0"
+    },
+    "react/stream": {
+        "version": "v1.1.0"
     },
     "ruflin/elastica": {
         "version": "6.1.0"
@@ -118,6 +151,24 @@
             "version": "3.3",
             "ref": "7c8798612bf94fbe4cb75056a4cd7ea3a9183698"
         }
+    },
+    "thruway/client": {
+        "version": "0.5.4"
+    },
+    "thruway/pawl-transport": {
+        "version": "0.5.0"
+    },
+    "thruway/ratchet-transport": {
+        "version": "0.5.0"
+    },
+    "voryx/thruway": {
+        "version": "0.5.3"
+    },
+    "voryx/thruway-bundle": {
+        "version": "0.4.1"
+    },
+    "voryx/thruway-common": {
+        "version": "1.0.5"
     },
     "willdurand/negotiation": {
         "version": "2.x-dev"
