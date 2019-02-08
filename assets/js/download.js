@@ -5,7 +5,7 @@ try {
     // for browsers (where AutobahnJS is available globally)
 }
 
-var connection = new autobahn.Connection({url: 'ws://127.0.0.1:8080/', realm: 'realm1'});
+var connection = new autobahn.Connection({url: 'ws://rappnews.herokuapp.com:8081/', realm: 'realm1'});
 
 
 connection.onopen = function (session) {
