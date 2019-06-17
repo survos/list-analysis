@@ -4,7 +4,7 @@
     "minimum-stability": "dev",
     "prefer-stable" : true,
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-pgsql": "*",
@@ -20,7 +20,7 @@
         "sensio/framework-extra-bundle": "^5.1",
         "sentry/sentry-symfony": "^2.2",
         "survos/landing-bundle": "*@dev",
-        "symfony/asset": "4.2.*",
+        "symfony/asset": "^4",
         "symfony/console": "*",
         "symfony/expression-language": "*",
         "symfony/flex": "^1.1",
@@ -30,7 +30,7 @@
         "symfony/orm-pack": "^1.0",
         "symfony/process": "*",
         "symfony/security-bundle": "*",
-        "symfony/serializer": "4.2.*",
+        "symfony/serializer": "^4.2",
         "symfony/serializer-pack": "*",
         "symfony/swiftmailer-bundle": "^3.1",
         "symfony/twig-bundle": "*",
@@ -98,7 +98,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "4.2.*"
+            "require": "4.3.*"
         }
     }
 }
