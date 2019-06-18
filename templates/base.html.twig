@@ -11,6 +11,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
 
+
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}{% endblock %}
     </head>
@@ -23,8 +24,15 @@
                 </div>
             {% endfor %}
         {% endblock %}
-        {% block body %}{% endblock %}
-        {% block javascripts %}
+        {% block body %}
+            <body>
+            {% block content %}
+            Content goes here.
+            {% endblock %}
+            </body>
+        {% endblock %}
+        {% block javascripts %}k
+            <script src="/build/runtime.js"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </body>

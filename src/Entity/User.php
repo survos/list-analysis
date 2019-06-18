@@ -3,43 +3,47 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
-use Symfony\Component\Validator\Constraints as Assert;
+use MsgPhp\User\User as BaseUser;
+use MsgPhp\User\UserId;
+use MsgPhp\Domain\Event\DomainEventHandler;
+use MsgPhp\Domain\Event\DomainEventHandlerTrait;
+use MsgPhp\User\Credential\NicknamePassword;
+use MsgPhp\User\Model\NicknamePasswordCredential;
+use MsgPhp\User\Model\ResettablePassword;
+use MsgPhp\User\Model\RolesField;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="fos_user")
+ * @ORM\Entity()
+ * @ORM\Table(name="app_user")
  */
-
-class User extends BaseUser
+class User extends BaseUser implements DomainEventHandler
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
+    use DomainEventHandlerTrait;
+    use NicknamePasswordCredential;
+    use ResettablePassword;
+    use RolesField;
 
     /**
-     * @ORM\OneToOne(targetEntity="Invitation")
-     * @ORM\JoinColumn(referencedColumnName="code")
-     * @Assert\NotNull(message="Your invitation is wrong", groups={"Registration"})
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="msgphp_user_id", length=191)
      */
-    protected $invitation;
+    private $id;
 
-    public function setInvitation(Invitation $invitation)
+    public function __construct(UserId $id, string $nickname, string $password)
     {
-        $this->invitation = $invitation;
+        $this->id = $id;
+        $this->credential = new NicknamePassword($nickname, $password);
     }
 
-    public function getInvitation()
+    public function getId(): UserId
     {
-        return $this->invitation;
+        return $this->id;
     }
+
+    public function __toString()
+    {
+        return $this->getCredential()->getUsername();
+    }
+
 }

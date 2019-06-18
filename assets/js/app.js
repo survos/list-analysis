@@ -14,12 +14,14 @@ require('../css/app.css');
 const $ = require('jquery');
 global.$ = $;
 window.jQuery = $;
-require('bootstrap3');
+
+require('bootstrap');
+require("bootstrap/dist/css/bootstrap.css");
 
 require('jquery-ui');
-
 require('jqrangeslider');
 require('@fortawesome/fontawesome-free');
+import 'font-awesome/css/font-awesome.css';
 
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();

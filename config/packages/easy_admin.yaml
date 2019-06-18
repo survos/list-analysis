@@ -1,5 +1,7 @@
 easy_admin:
     site_name: 'RappNet <i>Analysis</i>'
+    user:
+        name_property_path: originUsername
     design:
         form_theme:
         - horizontal

@@ -1,6 +1,6 @@
 swiftmailer:
 #    url: '%env(MAILER_URL)%'
-    transport: 'swiftmailer.mailer.transport.expertcoder_swift_mailer.send_grid'
+#    transport: 'swiftmailer.mailer.transport.expertcoder_swift_mailer.send_grid'
         # transport: expertcoder_swift_mailer.send_grid
     spool: { type: 'memory' }
 

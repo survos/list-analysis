@@ -23,8 +23,10 @@
 
             {# Collect the nav links, forms, and other content for toggling #}
             <div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
-                {{ knp_menu_render('landing_menu', {'currentClass': 'active', 'template': 'SurvosLandingBundle::knp_menu.html.twig'}) }}
-                {{ knp_menu_render('test_menu', {'currentClass': 'active', 'template': 'SurvosLandingBundle::knp_menu.html.twig'}) }}
+                {#
+                {{ knp_menu_render('landing_menu', {'currentClass': 'active', 'template': '@SurvosLandingBundle/knp_menu.html.twig'}) }}
+                {{ knp_menu_render('test_menu', {'currentClass': 'active', 'template': '@SurvosLandingBundle/knp_menu.html.twig'}) }}
+                #}
             </div>
         </div>
     </div>

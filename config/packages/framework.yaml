@@ -9,9 +9,9 @@ framework:
     session:
         handler_id: ~
 
-    templating:
-        engines:
-            - twig
+#    templating:
+#        engines:
+#            - twig
 
 
     #esi: true

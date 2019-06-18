@@ -22,18 +22,20 @@
         <!-- Delivery is disabled by default via "null://localhost" -->
         <env name="MAILER_URL" value="null://localhost"/>
         <!-- ###- symfony/swiftmailer-bundle ### -->
-
-        <!-- ###+ nelmio/cors-bundle ### -->
-        <env name="CORS_ALLOW_ORIGIN" value="^https?://localhost(:[0-9]+)?$"/>
-        <!-- ###- nelmio/cors-bundle ### -->
-
         <!-- ###+ sentry/sentry-symfony ### -->
         <env name="SENTRY_DSN" value=""/>
         <!-- ###- sentry/sentry-symfony ### -->
 
-        <!-- ###+ expertcoder/swiftmailer-send-grid-bundle ### -->
-        <env name="SENDGRID_API_KEY" value="PleaseEnterYourKey"/>
-        <!-- ###- expertcoder/swiftmailer-send-grid-bundle ### -->
+        <!-- ###+ symfony/messenger ### -->
+        <!-- Choose one of the transports below -->
+        <!-- MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages -->
+        <!-- MESSENGER_TRANSPORT_DSN=doctrine://default -->
+        <!-- MESSENGER_TRANSPORT_DSN=redis://localhost:6379/messages -->
+        <!-- ###- symfony/messenger ### -->
+
+        <!-- ###+ nelmio/cors-bundle ### -->
+        <env name="CORS_ALLOW_ORIGIN" value="^https?://localhost(:[0-9]+)?$"/>
+        <!-- ###- nelmio/cors-bundle ### -->
     </php>
 
     <testsuites>
