@@ -11,7 +11,6 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
 
-
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}{% endblock %}
     </head>
@@ -26,12 +25,13 @@
         {% endblock %}
         {% block body %}
             <body>
+            {% include "@SurvosLanding/navbar.html.twig" %}
             {% block content %}
             Content goes here.
             {% endblock %}
             </body>
         {% endblock %}
-        {% block javascripts %}k
+        {% block javascripts %}
             <script src="/build/runtime.js"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}

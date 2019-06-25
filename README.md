@@ -9,7 +9,10 @@ Quick listserv analysis
     postgres=# create user rapp with encrypted password 'mypass';
     postgres=# grant all privileges on database rapp to rapp;
     
-    
+## Fontawesome5
+
+    https://www.pullrequest.com/blog/webpack-fontawesome-guide/    
+
 ## clone the repo
 
 ## Local the archives and data
@@ -18,4 +21,5 @@ Quick listserv analysis
     bin/console app:import
     
     
+##     
 
