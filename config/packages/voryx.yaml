@@ -6,7 +6,7 @@ voryx_thruway:
     port: 8080  # public facing port.  If authentication is enabled, this port will be protected
     trusted_port: 8081 # Bypasses all authentication.  Use this for trusted clients.
     authentication: false # true will load the AuthenticationManager
-  user_provider: 'fos_user.user_provider.username'
+#  user_provider: 'fos_user.user_provider.username'
   enable_logging: true
 
   locations:

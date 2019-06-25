@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "autobahn": "^18.10.2",
-    "bootstrap3": "^3.3.5",
+    "bootstrap": "^4.3.1",
     "canvasjs": "^1.8.1",
     "jqrangeslider": "^5.7.5",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "webpack-notifier": "^1.7.0"
   },
@@ -13,7 +13,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/free-regular-svg-icons": "^5.6.3",
     "@fortawesome/free-solid-svg-icons": "^5.6.3",
-    "@symfony/webpack-encore": "^0.22.4"
+    "@symfony/webpack-encore": "^0.22.4",
+    "popper.js": "^1.15.0"
   },
   "scripts": {
     "dev-server": "encore dev-server",

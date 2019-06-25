@@ -1,54 +1,75 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "dev",
-    "prefer-stable" : true,
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.3",
+        "ext-apcu": "*",
         "ext-ctype": "*",
+        "ext-gd": "*",
         "ext-iconv": "*",
-        "ext-pgsql": "*",
-        "ext-sqlite3": "*",
-        "api-platform/api-pack": "dev-master",
-        "cmen/google-charts-bundle": "dev-master",
-        "easycorp/easyadmin-bundle": "*",
-        "expertcoder/swiftmailer-send-grid-bundle": "^2.2",
-        "fabpot/goutte": "^3.2",
-        "friendsofsymfony/elastica-bundle": "^5.1@dev",
-        "friendsofsymfony/user-bundle": "~2.0",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "api-platform/api-pack": "^1.2",
+        "aws/aws-sdk-php": "^3.99",
+        "cmen/google-charts-bundle": "^3.1",
+        "easycorp/easyadmin-bundle": "^2.1",
+        "hamstar/wikimate": "^0.12.0",
+        "knplabs/knp-gaufrette-bundle": "^0.6.1",
+        "knplabs/knp-markdown-bundle": "^1.7",
         "knplabs/knp-menu-bundle": "^2.2",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "msgphp/user-bundle": "^0.10.0",
+        "oneup/flysystem-bundle": "^3.1",
+        "php-ffmpeg/php-ffmpeg": "^0.14.0",
         "sensio/framework-extra-bundle": "^5.1",
-        "sentry/sentry-symfony": "^2.2",
+        "sentry/sentry-symfony": "^3.0",
+        "stichoza/google-translate-php": "^4.0",
+        "stof/doctrine-extensions-bundle": "^1.3",
         "survos/landing-bundle": "*@dev",
-        "symfony/asset": "4.2.*",
-        "symfony/console": "*",
-        "symfony/expression-language": "*",
+        "symfony/asset": "4.3.*",
+        "symfony/console": "4.3.*",
+        "symfony/dotenv": "4.3.*",
+        "symfony/expression-language": "4.3.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "*",
-        "symfony/framework-bundle": "*",
+        "symfony/form": "4.3.*",
+        "symfony/framework-bundle": "4.3.*",
+        "symfony/http-client": "4.3.*",
+        "symfony/intl": "4.3.*",
+        "symfony/messenger": "4.3.*",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/orm-pack": "^1.0",
-        "symfony/process": "*",
-        "symfony/security-bundle": "*",
-        "symfony/serializer": "4.2.*",
-        "symfony/serializer-pack": "*",
-        "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/twig-bundle": "*",
-        "symfony/validator": "*",
-        "symfony/web-link": "*",
-        "symfony/webpack-encore-bundle": "dev-master",
-        "symfony/yaml": "*",
-        "twbs/bootstrap": "^4.1",
+        "symfony/orm-pack": "*",
+        "symfony/process": "4.3.*",
+        "symfony/security-bundle": "4.3.*",
+        "symfony/serializer": "4.3.*",
+        "symfony/serializer-pack": "^1.0",
+        "symfony/swiftmailer-bundle": "^3.2",
+        "symfony/translation": "4.3.*",
+        "symfony/twig-bundle": "4.3.*",
+        "symfony/validator": "4.3.*",
+        "symfony/web-link": "4.3.*",
+        "symfony/webpack-encore-bundle": "^1.6",
+        "symfony/workflow": "4.3.*",
+        "symfony/yaml": "4.3.*",
         "voryx/thruway-bundle": "^0.4.1"
     },
     "require-dev": {
-        "symfony/debug-pack": "^1.0",
-        "symfony/dotenv": "*",
+        "sebastian/diff": "^3.0",
+        "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "*"
+        "symfony/web-server-bundle": "4.3.*"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Survos/LandingBundle"
+        },
+        {
+            "type": "path",
+            "url": "../Survos/xxemail-bundle"
+        }
+    ],
     "config": {
         "preferred-install": {
             "*": "dist"
@@ -57,7 +78,6 @@
     },
     "autoload": {
         "psr-4": {
-            "Survos\\LandingBundlex\\": "../Survos/LandingBundle/src/",
             "App\\": "src/"
         }
     },
@@ -67,19 +87,13 @@
         }
     },
     "replace": {
-        "paragonie/random_compat": "*",
+        "paragonie/random_compat": "2.*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php56": "*"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../Survos/LandingBundlex"
-        }
-    ],
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
@@ -98,7 +112,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "4.2.*"
+            "require": "4.3.*"
         }
     }
 }
