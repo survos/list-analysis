@@ -8,6 +8,7 @@
         "ext-gd": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
+        "ext-json": "*",
         "ext-mbstring": "*",
         "api-platform/api-pack": "^1.2",
         "aws/aws-sdk-php": "^3.99",

@@ -1,41 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+{% extends "@SurvosLanding/base.html.twig" %}
 
-        <!-- kudos to https://favicon.io/favicon-generator/ -->
+{% block title "RappNet" %}
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-
-        {# always include app?  Or add it to stylesheets block and always call parent? #}
-        {{ encore_entry_link_tags('app') }}
-
-
-        {% block stylesheets %}{% endblock %}
-    </head>
-
-            <body>
-            {% include "@SurvosLanding/navbar.html.twig" %}
-
-            {% block flashMessages %}
-                {# pass a string argument to get only the messages of that type #}
-                {% for message in app.session.flashBag.all %}
-                    <div class="alert alert-notice">
-                        {{ message|join('<br />') }}
-                    </div>
-                {% endfor %}
-            {% endblock %}
-
-            {% block body %}
-            Content goes here, must have a <code>body</code> block.
-            {% endblock %}
-            </body>
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-</html>

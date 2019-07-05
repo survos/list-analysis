@@ -18,7 +18,12 @@ Install according to https://www.pullrequest.com/blog/webpack-fontawesome-guide/
     @fortawesome:registry=https://npm.fontawesome.com/
     //npm.fontawesome.com/:_authToken=<YOUR TOKEN GOES HERE>
     
-If you’re signed into the Font Awesome site, you can find your token here.
+    OR set it globally 
+    
+    npm config set "@fortawesome:registry" https://npm.fontawesome.com/ 
+    npm config set "//npm.fontawesome.com/:_authToken" C04F8B9D-DF27-405E-B251-0D03AAFAF0D2X
+    
+If you’re signed into the Font Awesome site, you can find your token at https://fontawesome.com/account.
 
 ## clone the repo
 

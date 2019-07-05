@@ -15,14 +15,18 @@
     {% endspaceless %}
 {% endblock form_row %}
 
-{% block content %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+
+{% block body %}
 
 
     {# base url, so we don't have to load fosrouting #}
     {% set url = path('message_count_data')  %}
 
-
-    {{ encore_entry_link_tags('home') }}
 
     <div>
         {{ form_start(searchForm, {

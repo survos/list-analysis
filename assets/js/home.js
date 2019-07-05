@@ -1,5 +1,7 @@
+// import $ from 'jquery';
+
 require('jquery-ui');
-require('jqrangeslider');
+// require('jqrangeslider');
 
 // import jqrangeslider from 'jquery-ui/ui/widgets/jqrangeslider';
 

@@ -16,8 +16,9 @@ class MenuBuilder extends LandingMenuBuilder
         $menu->setChildrenAttribute('class', 'nav navbar-nav mr-auto');
         $menu->addChild('Home', ['route' => 'survos_landing'])
             ->setAttribute('icon', 'fa fa-home');
-        $menu->addChild('xx', ['route' => 'survos_landing']);
-        $menu->addChild('Three', ['route' => 'survos_landing']);
+        $menu->addChild('pie', [
+            'route' => 'pie'
+        ]);
         // ... add more children
 
         return $this->cleanupMenu($menu);

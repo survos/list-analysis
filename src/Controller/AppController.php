@@ -14,6 +14,7 @@ use App\Repository\TimePeriodRepository;
 use App\Services\InvitationService;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Doctrine\ORM\EntityManagerInterface;
+use Survos\LandingBundle\Controller\BaseController;
 use Survos\LandingBundle\LandingService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -26,7 +27,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Voryx\ThruwayBundle\Annotation\Register;
 
-class AppController extends AbstractController
+class AppController extends BaseController
 {
 
     private $messageRepo;
@@ -104,7 +105,7 @@ class AppController extends AbstractController
     private function getMonthlyChartData()
     {
 
-        $y = $m = [];
+        $x = $m = [];
         /** @var TimePeriod $period */
         foreach ($this->timePeriodRepo->findAll() as $period) {
             if (empty($yearArray[$period->getYear()])) {
@@ -124,9 +125,10 @@ class AppController extends AbstractController
     /**
      * @Route("/monthly-counts.{_format}", name="monthly_count_data")
      */
-    public function monthlyCountData(Request $request, $_format='json', AccountRepository $repo, MessageRepository $messageRepository, TimePeriodRepository $timePeriodRepository)
+    public function monthlyCountData(Request $request, $_format='html', AccountRepository $repo, MessageRepository $messageRepository, TimePeriodRepository $timePeriodRepository)
     {
-        return new JsonResponse($this->getMonthlyChartData());
+        $data = $this->getMonthlyChartData();
+        return $this->jsonResponse($data, $request, $_format);
     }
 
 
