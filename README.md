@@ -11,7 +11,14 @@ Quick listserv analysis
     
 ## Fontawesome5
 
-    https://www.pullrequest.com/blog/webpack-fontawesome-guide/    
+Install according to https://www.pullrequest.com/blog/webpack-fontawesome-guide/    
+
+    cp nnpmrc.dist .npmrc
+
+    @fortawesome:registry=https://npm.fontawesome.com/
+    //npm.fontawesome.com/:_authToken=<YOUR TOKEN GOES HERE>
+    
+If you’re signed into the Font Awesome site, you can find your token here.
 
 ## clone the repo
 

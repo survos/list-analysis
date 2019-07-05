@@ -96,13 +96,15 @@ class AppImportArchivesCommand extends Command
 
 
                 try {
+                    $io->writeln("Flushing ...");
                     $this->getEntityManager()->flush();
                     $this->getEntityManager()->clear();
 
                     // batch update the counts
                     // $this->updateCounts();
-                    $this->getEntityManager()->flush();
+                    // $this->getEntityManager()->flush();
 
+                    $io->writeln("Init Accounts...");
                     $this->initAccounts();
                 } catch (\Exception $e) {
                     die($e->getMessage() . "\n");

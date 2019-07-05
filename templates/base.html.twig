@@ -11,29 +11,33 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
 
+        {# always include app?  Or add it to stylesheets block and always call parent? #}
         {{ encore_entry_link_tags('app') }}
+
+
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
-        {% block flashMessages %}
-            {# pass a string argument to get only the messages of that type #}
-            {% for message in app.session.flashBag.all %}
-                <div class="alert alert-notice">
-                    {{ message|join('<br />') }}
-                </div>
-            {% endfor %}
-        {% endblock %}
+
         {% block body %}
             <body>
             {% include "@SurvosLanding/navbar.html.twig" %}
+
+            {% block flashMessages %}
+                {# pass a string argument to get only the messages of that type #}
+                {% for message in app.session.flashBag.all %}
+                    <div class="alert alert-notice">
+                        {{ message|join('<br />') }}
+                    </div>
+                {% endfor %}
+            {% endblock %}
+
             {% block content %}
             Content goes here.
             {% endblock %}
             </body>
         {% endblock %}
+
         {% block javascripts %}
-            <script src="/build/runtime.js"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-    </body>
 </html>

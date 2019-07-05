@@ -57,7 +57,7 @@ class AppController extends AbstractController
     }
 
     /**
-     * @  Route("/landing", name="landing")
+     * @Route("/landing", name="landing")
      */
     public function index(LandingService $landingService)
     {
@@ -353,7 +353,7 @@ class AppController extends AbstractController
 
 
     /**
-     * @Route("/landing", name="landing")
+     * @  Route("/landing", name="landing")
      * @Route("/pie", name="pie")
      */
     public function piechart(Request $request, AccountRepository $repo, MessageRepository $messageRepository, TimePeriodRepository $timePeriodRepository)

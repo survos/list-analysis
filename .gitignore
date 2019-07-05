@@ -2,6 +2,7 @@
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.live
+/.npmrc
 /public/bundles/
 /var/
 /vendor/
