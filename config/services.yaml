@@ -37,11 +37,6 @@ services:
     Voryx\ThruwayBundle\Client\ClientManager:
         alias: thruway.client
 
-    xxsurvos.landing_menu_builder:
-        class: Survos\LandingBundle\Menu\LandingMenuBuilder
-        arguments: ["@knp_menu.factory"]
-        tags:
-        - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
 
 
 #     Survos\LandingBundle\LandingService: ~

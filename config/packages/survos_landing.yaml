@@ -15,3 +15,11 @@ services:
       - { name: knp_menu.menu_builder, method: createTestMenu, alias: test_menu }
       - { name: knp_menu.menu_builder, method: createAuthMenu, alias: auth_menu }
 
+  app.menu_builder:
+    class: App\Menu\MenuBuilder
+    arguments:
+      - "@knp_menu.factory"
+      - "@security.authorization_checker"
+    tags:
+      - { name: knp_menu.menu_builder, method: createTopMenu, alias: top_menu }
+
