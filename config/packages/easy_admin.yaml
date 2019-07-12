@@ -21,6 +21,7 @@ easy_admin:
         - entity: Message
           icon: email
         - entity: Account
+        - entity: User
         - entity: TimePeriod
         - entity: Archive
     show:
@@ -31,6 +32,12 @@ easy_admin:
 #        # List the entity class name you want to manage
         Message:
             class: App\Entity\Message
+        User:
+            class: App\Entity\User
+            list:
+                fields:
+                    - nickname
+                    - roles
         Account:
             class: App\Entity\Account
         Archive:

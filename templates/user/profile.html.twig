@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
     <h1>Your Profile</h1>
 
     <p>Logged in as: <em>{{ msgphp_user.current.nickname }}</em></p>
+
+    {% for role in msgphp_user.current.roles %}
+        <li>{{ role.role.name }}</li>
+    {% endfor %}
+
     <p><a href="{{ path('logout') }}">Logout</a></p>
 
     <a href="{{ path('survos_landing') }}">Home</a>

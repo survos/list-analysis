@@ -43,7 +43,7 @@ class User extends BaseUser implements DomainEventHandler
 
     public function __toString()
     {
-        return $this->getCredential()->getUsername();
+        return $this->getNickname();
     }
 
 }
