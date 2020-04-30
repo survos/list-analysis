@@ -4,7 +4,7 @@
     "bootstrap": "^4.3.1",
     "canvasjs": "^1.8.1",
     "jqrangeslider": "^5.7.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ui": "^1.12.1",
     "webpack-notifier": "^1.7.0"
   },
