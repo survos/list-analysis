@@ -5,7 +5,7 @@
     "canvasjs": "^1.8.1",
     "jqrangeslider": "^5.7.5",
     "jquery": "^3.4.1",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.13.2",
     "webpack-notifier": "^1.7.0"
   },
   "devDependencies": {
